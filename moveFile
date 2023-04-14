@@ -1,0 +1,44 @@
+#!/bin/bash
+
+dir=./BaseStationBashSkrippie
+dateTime=`date +"%d-%b-%Y_%H-%M-%S"`
+githubFolderName=codeGithub
+
+#cd $dir
+mkdir -p ./Backup_${dateTime}
+
+echo
+for filename in *; do
+	if [[ -d "$filename" ]]
+	then
+		echo "Skipping ${filename} as it is a dir"
+	else
+		if [[ $filename == "moveFile" ]] || [[ $filename == "uploadArduino" ]]
+		then
+			continue
+		else
+			mv "$filename" "Backup_${dateTime}"
+			echo $filename "-> Backup_"${dateTime}
+		fi
+	fi
+done
+
+echo
+git clone https://github.com/R2D2-2023/Base-Station ${githubFolderName}
+echo
+
+for filename in $githubFolderName/*; do
+	if [[ -d "$filename" ]]
+	then
+		echo "Skipping ${filename} as it is a dir"
+	else
+		if [[ $filename == "moveFile" ]] || [[ $filename == "uploadArduino" ]]
+		then
+			continue
+		else
+			mv "$filename" "."
+		fi
+	fi
+done
+
+rm -rf $githubFolderName
