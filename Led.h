@@ -9,11 +9,12 @@
 class Led {
 private:
     sf::RenderWindow &w;
+    sf::Vector2f position;
     sf::RectangleShape shape;
 
 public:
     Led(sf::RenderWindow &w, sf::Vector2f position);
-    void draw();
+    void draw(sf::RenderWindow &w);
 
 };
 
