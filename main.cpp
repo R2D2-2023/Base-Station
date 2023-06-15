@@ -1,28 +1,30 @@
 #include <iostream>
-//#include <SFML/Graphics.hpp>
-#include "Led.h"
+#include "Matrix.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
     sf::RenderWindow window(sf::VideoMode{320, 480}, "LED Visualisation");
 
-    //Led led(window, sf::Vector2f(5,5));
+    Matrix matrix1(window);
+    Matrix matrix2(window, sf::Vector2f(0,16));
 
-    while (window.isOpen())
+    while (window.isOpen()) {
         window.clear();
 
         //Hier alle draws
-    //    led.draw(window);
+        matrix1.draw();
+        matrix2.draw();
+//        matrix1.color(255, 255, 255);
+//        matrix2.color(255, 0, 255);
+        window.display();
 
-     //   window.display();
-
-     //   sf::sleep( sf::milliseconds( 20));
-
+//        led.changeColor(sf::Color(255,255,0));
+        sf::sleep( sf::milliseconds( 20));
         sf::Event event;
-        while( window.pollEvent(event) ){
-            if( event.type == sf::Event::Closed ){
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
+    }
     return 0;
 }
