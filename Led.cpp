@@ -1,12 +1,25 @@
 //
-// Created by Erik on 15/06/2023.
+// Created by Erik on 15-6-2023.
 //
 
 #include "Led.h"
+#include <iostream>
 
-Led::Led(sf::RenderWindow &w, sf::Vector2f position):w(w), position(position){}
+Led::Led(sf::RenderWindow &w, sf::Vector2f position, sf::Color color):window(w), position(position), color(color){
+    shape.setSize({10,10});
+}
 
-void Led::draw(sf::RenderWindow &w){
+void Led::draw(){
+  //  std::cout << "LEDtest \t";
+    shape.setSize(sf::Vector2f(10,10));
+    //std::cout << "LEDtestSize \t";
     shape.setPosition(position);
-    w.draw(shape);
+    shape.setFillColor(color);
+    //std::cout << "LEDtestPos \t";
+    window.draw(shape);
+    //std::cout << "LEDtestDraw \t";
+}
+
+void Led::changeColor(sf::Color newColor) {
+    shape.setFillColor(newColor);
 }

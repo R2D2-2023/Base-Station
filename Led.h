@@ -1,22 +1,28 @@
 //
-// Created by Erik on 15/06/2023.
+// Created by Erik on 15-6-2023.
 //
 
-#ifndef VISUALISE_LED_H
-#define VISUALISE_LED_H
+#ifndef LEDMATRIX_R2D2_LED_H
+#define LEDMATRIX_R2D2_LED_H
 #include <SFML/Graphics.hpp>
 
 class Led {
 private:
-    sf::RenderWindow &w;
+    sf::RenderWindow &window;
     sf::Vector2f position;
     sf::RectangleShape shape;
+    sf::Color color;
 
 public:
-    Led(sf::RenderWindow &w, sf::Vector2f position);
-    void draw(sf::RenderWindow &w);
+    Led(sf::RenderWindow &w, sf::Vector2f position = {0,0}, sf::Color color = sf::Color::Green);
+    void draw();
+    void changeColor(sf::Color newColor);
+
+    sf::Vector2f getPos(){
+        return position;
+    }
 
 };
 
 
-#endif //VISUALISE_LED_H
+#endif //LEDMATRIX_R2D2_LED_H
