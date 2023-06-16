@@ -80,12 +80,12 @@ clean: CMakeFiles/LEDMatrix_R2D2.dir/clean
 CMakeFiles/LEDMatrix_R2D2.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LEDMatrix_R2D2.dir\build.make CMakeFiles/LEDMatrix_R2D2.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LEDMatrix_R2D2.dir\build.make CMakeFiles/LEDMatrix_R2D2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\cmake-build-debug-mingw\CMakeFiles --progress-num=1,2,3,4 "Built target LEDMatrix_R2D2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\cmake-build-debug-mingw\CMakeFiles --progress-num=1,2,3,4,5,6 "Built target LEDMatrix_R2D2"
 .PHONY : CMakeFiles/LEDMatrix_R2D2.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/LEDMatrix_R2D2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\cmake-build-debug-mingw\CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\cmake-build-debug-mingw\CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/LEDMatrix_R2D2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\cmake-build-debug-mingw\CMakeFiles 0
 .PHONY : CMakeFiles/LEDMatrix_R2D2.dir/rule

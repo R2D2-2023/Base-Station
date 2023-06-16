@@ -3,8 +3,7 @@
 //
 
 #include "Matrix.h"
-#include <iostream>
-Matrix::Matrix(sf::RenderWindow &w, sf::Vector2f matrixPos): w(w), matrixPos(matrixPos){
+Matrix::Matrix(sf::RenderWindow &w, sf::Vector2f matrixPos): w(w), matrix_pos(matrixPos){
     matrixPos.x *= 10;
     matrixPos.y *= 10; // to make the first and second matrix line up.
 
@@ -14,51 +13,33 @@ Matrix::Matrix(sf::RenderWindow &w, sf::Vector2f matrixPos): w(w), matrixPos(mat
         std::vector<Led> row;
         row.reserve(rows);
         for (int j = 0; j < rows; ++j) {
-            row.emplace_back(w, pos, sf::Color(red, green, blue));
+            row.emplace_back(w, pos);
             pos.x += 10;
         }
         pos.x = matrixPos.x;
-        matrixVec.emplace_back(row);
+        matrix_vec.emplace_back(row);
         pos.y +=10;
     }
 }
 
-void Matrix::test() {
-    sf::Color color = sf::Color(red, green, blue);
-    for (auto & strip: matrixVec) {
-        for (auto & led: strip) {
-            led.changeColor(color);
-        }
-    }
-    red --;
-    green --;
-    blue --;
-    if(red <= 0){red=0,green=0,blue = 0;}
-}
-
-void Matrix::color(uint8_t redw, uint8_t greenw, uint8_t bluew){
-    for (auto & strip : matrixVec){
-        for (auto & led : strip) {
-            if (red < redw) {
-                red++;
-            }
-            if(green < greenw){
-                green++;
-            }
-            if(blue < bluew) {
-                blue++;
-            }
-            led.changeColor(sf::Color(red, green, blue));
+void Matrix::instantColor(int redw, int greenw, int bluew){
+    for (auto & strip : matrix_vec){
+        for (auto & led : strip){
+//            std::cout << red << " " << green << " " << blue <<"\n";
+            led.changeColor(sf::Color(redw, greenw, bluew));
         }
     }
 }
 
 void Matrix::draw() {
-    std::cout << red << " " << green << " " << blue <<"\n";
-    for(auto & strip : matrixVec) {
+    for(auto & strip : matrix_vec) {
         for (auto & led : strip) {
             led.draw();
         }
- }
+    }
+}
 
+void Matrix::changePixelColor(int x, int y, sf::Color color) {
+    //std::cout<<"ik verander van kleur"<<"\n";
+    matrix_vec[x][y].changeColor(color);
 }

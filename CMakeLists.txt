@@ -3,7 +3,7 @@ project(LEDMatrix_R2D2)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(LEDMatrix_R2D2 main.cpp Led.cpp Led.h Matrix.cpp Matrix.h)
+add_executable(LEDMatrix_R2D2 main.cpp Led.cpp Led.h Matrix.cpp Matrix.h ColorWheel.cpp ColorWheel.h Painting.cpp Painting.h)
 
 include_directories(c:/TIBestanden/SFML-2.5.1/include)
 

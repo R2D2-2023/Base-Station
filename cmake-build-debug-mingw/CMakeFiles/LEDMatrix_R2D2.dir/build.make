@@ -107,11 +107,41 @@ CMakeFiles/LEDMatrix_R2D2.dir/Matrix.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LEDMatrix_R2D2.dir/Matrix.cpp.s"
 	C:\TIBestanden\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\Matrix.cpp -o CMakeFiles\LEDMatrix_R2D2.dir\Matrix.cpp.s
 
+CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.obj: CMakeFiles/LEDMatrix_R2D2.dir/flags.make
+CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.obj: CMakeFiles/LEDMatrix_R2D2.dir/includes_CXX.rsp
+CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.obj: ../ColorWheel.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.obj"
+	C:\TIBestanden\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LEDMatrix_R2D2.dir\ColorWheel.cpp.obj -c C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\ColorWheel.cpp
+
+CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.i"
+	C:\TIBestanden\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\ColorWheel.cpp > CMakeFiles\LEDMatrix_R2D2.dir\ColorWheel.cpp.i
+
+CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.s"
+	C:\TIBestanden\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\ColorWheel.cpp -o CMakeFiles\LEDMatrix_R2D2.dir\ColorWheel.cpp.s
+
+CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.obj: CMakeFiles/LEDMatrix_R2D2.dir/flags.make
+CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.obj: CMakeFiles/LEDMatrix_R2D2.dir/includes_CXX.rsp
+CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.obj: ../Painting.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.obj"
+	C:\TIBestanden\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\LEDMatrix_R2D2.dir\Painting.cpp.obj -c C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\Painting.cpp
+
+CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.i"
+	C:\TIBestanden\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\Painting.cpp > CMakeFiles\LEDMatrix_R2D2.dir\Painting.cpp.i
+
+CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.s"
+	C:\TIBestanden\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\Painting.cpp -o CMakeFiles\LEDMatrix_R2D2.dir\Painting.cpp.s
+
 # Object files for target LEDMatrix_R2D2
 LEDMatrix_R2D2_OBJECTS = \
 "CMakeFiles/LEDMatrix_R2D2.dir/main.cpp.obj" \
 "CMakeFiles/LEDMatrix_R2D2.dir/Led.cpp.obj" \
-"CMakeFiles/LEDMatrix_R2D2.dir/Matrix.cpp.obj"
+"CMakeFiles/LEDMatrix_R2D2.dir/Matrix.cpp.obj" \
+"CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.obj" \
+"CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.obj"
 
 # External object files for target LEDMatrix_R2D2
 LEDMatrix_R2D2_EXTERNAL_OBJECTS =
@@ -119,6 +149,8 @@ LEDMatrix_R2D2_EXTERNAL_OBJECTS =
 LEDMatrix_R2D2.exe: CMakeFiles/LEDMatrix_R2D2.dir/main.cpp.obj
 LEDMatrix_R2D2.exe: CMakeFiles/LEDMatrix_R2D2.dir/Led.cpp.obj
 LEDMatrix_R2D2.exe: CMakeFiles/LEDMatrix_R2D2.dir/Matrix.cpp.obj
+LEDMatrix_R2D2.exe: CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.obj
+LEDMatrix_R2D2.exe: CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.obj
 LEDMatrix_R2D2.exe: CMakeFiles/LEDMatrix_R2D2.dir/build.make
 LEDMatrix_R2D2.exe: C:/TIBestanden/SFML-2.5.1/lib/libsfml-system-d.a
 LEDMatrix_R2D2.exe: C:/TIBestanden/SFML-2.5.1/lib/libsfml-window-d.a
@@ -128,7 +160,7 @@ LEDMatrix_R2D2.exe: C:/TIBestanden/SFML-2.5.1/lib/libsfml-audio-d.a
 LEDMatrix_R2D2.exe: CMakeFiles/LEDMatrix_R2D2.dir/linklibs.rsp
 LEDMatrix_R2D2.exe: CMakeFiles/LEDMatrix_R2D2.dir/objects1.rsp
 LEDMatrix_R2D2.exe: CMakeFiles/LEDMatrix_R2D2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable LEDMatrix_R2D2.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\jasie\CLionProjects\LEDMatrix_R2D2\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable LEDMatrix_R2D2.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\LEDMatrix_R2D2.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

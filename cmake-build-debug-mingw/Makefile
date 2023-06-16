@@ -128,6 +128,30 @@ LEDMatrix_R2D2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LEDMatrix_R2D2.dir\build.make CMakeFiles/LEDMatrix_R2D2.dir/build
 .PHONY : LEDMatrix_R2D2/fast
 
+ColorWheel.obj: ColorWheel.cpp.obj
+.PHONY : ColorWheel.obj
+
+# target to build an object file
+ColorWheel.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LEDMatrix_R2D2.dir\build.make CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.obj
+.PHONY : ColorWheel.cpp.obj
+
+ColorWheel.i: ColorWheel.cpp.i
+.PHONY : ColorWheel.i
+
+# target to preprocess a source file
+ColorWheel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LEDMatrix_R2D2.dir\build.make CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.i
+.PHONY : ColorWheel.cpp.i
+
+ColorWheel.s: ColorWheel.cpp.s
+.PHONY : ColorWheel.s
+
+# target to generate assembly for a file
+ColorWheel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LEDMatrix_R2D2.dir\build.make CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.s
+.PHONY : ColorWheel.cpp.s
+
 Led.obj: Led.cpp.obj
 .PHONY : Led.obj
 
@@ -176,6 +200,30 @@ Matrix.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LEDMatrix_R2D2.dir\build.make CMakeFiles/LEDMatrix_R2D2.dir/Matrix.cpp.s
 .PHONY : Matrix.cpp.s
 
+Painting.obj: Painting.cpp.obj
+.PHONY : Painting.obj
+
+# target to build an object file
+Painting.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LEDMatrix_R2D2.dir\build.make CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.obj
+.PHONY : Painting.cpp.obj
+
+Painting.i: Painting.cpp.i
+.PHONY : Painting.i
+
+# target to preprocess a source file
+Painting.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LEDMatrix_R2D2.dir\build.make CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.i
+.PHONY : Painting.cpp.i
+
+Painting.s: Painting.cpp.s
+.PHONY : Painting.s
+
+# target to generate assembly for a file
+Painting.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LEDMatrix_R2D2.dir\build.make CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.s
+.PHONY : Painting.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -209,12 +257,18 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... LEDMatrix_R2D2
+	@echo ... ColorWheel.obj
+	@echo ... ColorWheel.i
+	@echo ... ColorWheel.s
 	@echo ... Led.obj
 	@echo ... Led.i
 	@echo ... Led.s
 	@echo ... Matrix.obj
 	@echo ... Matrix.i
 	@echo ... Matrix.s
+	@echo ... Painting.obj
+	@echo ... Painting.i
+	@echo ... Painting.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

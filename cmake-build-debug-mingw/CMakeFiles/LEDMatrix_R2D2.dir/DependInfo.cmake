@@ -8,8 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/ColorWheel.cpp" "C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.obj"
   "C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Led.cpp" "C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/CMakeFiles/LEDMatrix_R2D2.dir/Led.cpp.obj"
   "C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Matrix.cpp" "C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/CMakeFiles/LEDMatrix_R2D2.dir/Matrix.cpp.obj"
+  "C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Painting.cpp" "C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.obj"
   "C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/main.cpp" "C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/CMakeFiles/LEDMatrix_R2D2.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

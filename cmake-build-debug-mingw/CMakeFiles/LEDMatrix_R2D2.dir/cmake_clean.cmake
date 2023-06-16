@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/LEDMatrix_R2D2.dir/ColorWheel.cpp.obj"
   "CMakeFiles/LEDMatrix_R2D2.dir/Led.cpp.obj"
   "CMakeFiles/LEDMatrix_R2D2.dir/Matrix.cpp.obj"
+  "CMakeFiles/LEDMatrix_R2D2.dir/Painting.cpp.obj"
   "CMakeFiles/LEDMatrix_R2D2.dir/main.cpp.obj"
   "LEDMatrix_R2D2.exe"
   "LEDMatrix_R2D2.exe.manifest"

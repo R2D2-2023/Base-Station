@@ -84,6 +84,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/ColorWheel.cpp">
+			<Option target="LEDMatrix_R2D2"/>
+		</Unit>
+		<Unit filename="C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/ColorWheel.h">
+			<Option target="LEDMatrix_R2D2"/>
+		</Unit>
 		<Unit filename="C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Led.cpp">
 			<Option target="LEDMatrix_R2D2"/>
 		</Unit>
@@ -94,6 +100,12 @@
 			<Option target="LEDMatrix_R2D2"/>
 		</Unit>
 		<Unit filename="C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Matrix.h">
+			<Option target="LEDMatrix_R2D2"/>
+		</Unit>
+		<Unit filename="C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Painting.cpp">
+			<Option target="LEDMatrix_R2D2"/>
+		</Unit>
+		<Unit filename="C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Painting.h">
 			<Option target="LEDMatrix_R2D2"/>
 		</Unit>
 		<Unit filename="C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/main.cpp">

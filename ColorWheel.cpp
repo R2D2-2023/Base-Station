@@ -36,10 +36,10 @@ void ColorWheel::makeColors(sf::Color color, sf::Vector2f pos){
 
 void ColorWheel::colorInterface() {
     if(sf::Mouse::getPosition(w).x > pos.x+size*0 &&
-       sf::Mouse::getPosition(w).x < pos.x+size*1 &&
-       sf::Mouse::getPosition(w).y > pos.y+size*0 &&
-       sf::Mouse::getPosition(w).y < pos.y+size*1 &&
-       sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+        sf::Mouse::getPosition(w).x < pos.x+size*1 &&
+        sf::Mouse::getPosition(w).y > pos.y+size*0 &&
+        sf::Mouse::getPosition(w).y < pos.y+size*1 &&
+        sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         changeColor(sf::Color(255,255,255));
         std::cout << std::to_string(current_color.r) << std::to_string(current_color.g) << std::to_string(current_color.b);
         //change the current drawing color to white
@@ -49,7 +49,7 @@ void ColorWheel::colorInterface() {
        sf::Mouse::getPosition(w).x < pos.x+size*2 &&
        sf::Mouse::getPosition(w).y > pos.y+size*0 &&
        sf::Mouse::getPosition(w).y < pos.y+size*1  &&
-       sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+        sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         changeColor(sf::Color(0,0,0));
         //change the current drawing color to black
         std::cout << std::to_string(current_color.r) << std::to_string(current_color.g) << std::to_string(current_color.b);
@@ -69,7 +69,7 @@ void ColorWheel::colorInterface() {
        sf::Mouse::getPosition(w).x < pos.x+size*4 &&
        sf::Mouse::getPosition(w).y > pos.y+size*0 &&
        sf::Mouse::getPosition(w).y < pos.y+size*1&&
-       sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+        sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         changeColor(sf::Color(0,255,0));
         //change the current drawing color to green
         std::cout << std::to_string(current_color.r) << std::to_string(current_color.g) << std::to_string(current_color.b);

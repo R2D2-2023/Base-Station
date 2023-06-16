@@ -676,8 +676,26 @@ SFML/Config.hpp
 
 C:/TIBestanden/SFML-2.5.1/include/SFML/Window/WindowStyle.hpp
 
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/ColorWheel.cpp
+ColorWheel.h
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/ColorWheel.h
+iostream
+-
+
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/ColorWheel.h
+SFML/Graphics.hpp
+-
+
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Led.cpp
+Led.h
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Led.h
+iostream
+-
+
 C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Led.h
 SFML/Graphics.hpp
+-
+vector
 -
 
 C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Matrix.h
@@ -689,10 +707,30 @@ Led.h
 C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Led.h
 vector
 -
-
-C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/main.cpp
 iostream
 -
+fstream
+-
+
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Painting.cpp
+Painting.h
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Painting.h
+iostream
+-
+
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Painting.h
+SFML/Graphics.hpp
+-
+ColorWheel.h
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/ColorWheel.h
 Matrix.h
 C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Matrix.h
+
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/main.cpp
+Matrix.h
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Matrix.h
+ColorWheel.h
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/ColorWheel.h
+Painting.h
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Painting.h
 
