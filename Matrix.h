@@ -26,14 +26,14 @@ public:
     void instantColor(int red, int green, int blue);
     void changePixelColor(int x, int y, sf::Color color);
 
-    void writeMatrixToFile(){
+    void writeMatrixToFile(std::string filename){
         std::ofstream file;
-        file.open("testFile.txt");
+        file.open(filename);
         for (int i = 0; i < matrix_vec.size(); ++i) {
             for (int j = 0; j < matrix_vec[i].size(); ++j) {
-                file << matrix_vec[i][j].getColor()[0] << "," << matrix_vec[i][j].getColor()[1] << "," << matrix_vec[i][j].getColor()[2] << "\t";
+                file << matrix_vec[i][j].getColor()[0] << "," << matrix_vec[i][j].getColor()[1] << "," << matrix_vec[i][j].getColor()[2] << "\n";
             }
-            file << "\n";
+//            file << "\n";
         }
         file.close();
     }

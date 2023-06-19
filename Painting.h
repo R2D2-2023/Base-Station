@@ -10,9 +10,9 @@
 class Painting {
 private:
     sf::RenderWindow & w;
-    ColorWheel wheel;
+    ColorWheel &wheel;
     sf::Color current_paint_color;
-    Matrix matrix;
+    Matrix & matrix;
 public:
     Painting(sf::RenderWindow & w, ColorWheel & wheel, Matrix & matrix);
     sf::Vector2i locateMousePixel();

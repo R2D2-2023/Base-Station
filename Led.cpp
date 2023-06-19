@@ -8,6 +8,8 @@
 Led::Led(sf::RenderWindow &w, sf::Vector2f position, sf::Color color):window(w), position(position), color(color){
     shape.setSize({10,10});
     shape.setFillColor(color);
+    shape.setOutlineColor(sf::Color::White);
+    shape.setOutlineThickness(0.5);
     shape.setPosition(position);
     shape.setSize(sf::Vector2f(10,10));
 }

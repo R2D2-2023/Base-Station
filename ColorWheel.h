@@ -13,10 +13,11 @@ private:
     float size = 50;
     sf::Color current_color;
     sf::RenderWindow &w;
+    void changeColor(sf::Color new_color);
+    void makeColors(sf::Color color, sf::Vector2f position);
+
 public:
     ColorWheel(sf::RenderWindow &w);
-    void changeColor(sf::Color new_color);
-    void makeColors(sf::Color color, sf::Vector2f pos);
     void colorInterface();
     sf::Color getColor();
 };

@@ -3,7 +3,7 @@
 //
 
 #include "Matrix.h"
-Matrix::Matrix(sf::RenderWindow &w, sf::Vector2f matrixPos): w(w), matrix_pos(matrixPos){
+ Matrix::Matrix(sf::RenderWindow &w, sf::Vector2f matrixPos): w(w), matrix_pos(matrixPos){
     matrixPos.x *= 10;
     matrixPos.y *= 10; // to make the first and second matrix line up.
 
@@ -20,6 +20,7 @@ Matrix::Matrix(sf::RenderWindow &w, sf::Vector2f matrixPos): w(w), matrix_pos(ma
         matrix_vec.emplace_back(row);
         pos.y +=10;
     }
+    std::cout << matrix_vec.size() << " " << matrix_vec[0].size() << std::endl;
 }
 
 void Matrix::instantColor(int redw, int greenw, int bluew){
@@ -40,6 +41,7 @@ void Matrix::draw() {
 }
 
 void Matrix::changePixelColor(int x, int y, sf::Color color) {
-    //std::cout<<"ik verander van kleur"<<"\n";
-    matrix_vec[x][y].changeColor(color);
+//    std::cout<<"ik verander van kleur"<<"\n";
+   // std::cout << std::to_string(color.r) << std::endl;
+    matrix_vec[y][x].changeColor(color);
 }
