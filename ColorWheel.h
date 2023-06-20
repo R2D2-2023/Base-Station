@@ -9,7 +9,7 @@
 // this class is to choose a color to paint with.
 class ColorWheel {
 private:
-    sf::Vector2f pos = sf::Vector2f(0.0,481.0);
+    sf::Vector2f pos = sf::Vector2f(0.0,321.0);
     float size = 50;
     sf::Color current_color;
     sf::RenderWindow &w;
