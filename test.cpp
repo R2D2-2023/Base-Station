@@ -5,7 +5,8 @@
 #include "HX711.h"
 
 int clock_pin = 0;
-int data_pin = 2;
+int data_pin1 = 2;
+int data_pin2 = 3;
 
 int hall_sensor_1 = 4;
 int hall_sensor_2 = 5;
@@ -14,7 +15,8 @@ int motor_pin_1 = 21;
 int motor_pin_2 = 22;
 
 
-HX711 scale(clock_pin, data_pin);
+HX711 scale_1(clock_pin, data_pin1);
+HX711 scale_2(clock_pin, data_pin2);
 
 bool motor1_aan = 0;
 bool motor2_aan = 1;
@@ -23,7 +25,8 @@ bool sensor_detected = 0;
 int main() {
     wiringPiSetup();
     std::cout << "Hello, World!" << std::endl;
-    scale.start(66483);
+    scale_1.start(66483);// this works to calabrate the scale
+    scale_2.start(66483);//  ^^
     pinMode(hall_sensor_1, INPUT);
 	pinMode(hall_sensor_2, INPUT);
 	pinMode(motor_pin_1, OUTPUT);
@@ -45,9 +48,11 @@ int main() {
 		//digitalWrite(motor_pin_2, 1);
 		//delay(3000);
 	//}
-        int grams = scale.getAvg(2);
-        std::cout << "avg:" << grams << std::endl;
-        if (grams <= -1500){
+        int grams1 = scale_1.getAvg(2);
+	int grams2 = scale_2.getAvg(2);
+        std::cout << "avg1:" << grams1 << std::endl;
+	std::cout << "avg2:" << grams2 << std::endl;
+        if (grams1 <= -1500 || grams2 <= -1500){
 			digitalWrite(motor_pin_1, LOW);
 			digitalWrite(motor_pin_2, LOW);
 			std::cout << "Opladen + schrijven" << std::endl;
