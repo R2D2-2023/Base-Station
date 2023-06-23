@@ -14,11 +14,26 @@
 # EXTERNAL cache entries
 ########################
 
+//Build jsoncpp_lib as a object library.
+BUILD_OBJECT_LIBS:BOOL=ON
+
+//Build jsoncpp_lib as a shared library.
+BUILD_SHARED_LIBS:BOOL=ON
+
+//Build jsoncpp_lib as a static library.
+BUILD_STATIC_LIBS:BOOL=ON
+
+//Path to a program.
+CCACHE_EXECUTABLE:FILEPATH=CCACHE_EXECUTABLE-NOTFOUND
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=C:/TIBestanden/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/addr2line.exe
 
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/TIBestanden/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/ar.exe
+
+//Archive output dir.
+CMAKE_ARCHIVE_OUTPUT_DIRECTORY:PATH=C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/lib
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
@@ -120,8 +135,59 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Convert GNU import libraries to MS format (requires Visual Studio)
 CMAKE_GNUtoMS:BOOL=OFF
 
+//User executables (bin)
+CMAKE_INSTALL_BINDIR:PATH=bin
+
+//Read-only architecture-independent data (DATAROOTDIR)
+CMAKE_INSTALL_DATADIR:PATH=
+
+//Read-only architecture-independent data root (share)
+CMAKE_INSTALL_DATAROOTDIR:PATH=share
+
+//Documentation root (DATAROOTDIR/doc/PROJECT_NAME)
+CMAKE_INSTALL_DOCDIR:PATH=
+
+//C header files (include)
+CMAKE_INSTALL_INCLUDEDIR:PATH=include
+
+//Info documentation (DATAROOTDIR/info)
+CMAKE_INSTALL_INFODIR:PATH=
+
+//Object code libraries (lib)
+CMAKE_INSTALL_LIBDIR:PATH=lib
+
+//Program executables (libexec)
+CMAKE_INSTALL_LIBEXECDIR:PATH=libexec
+
+//Locale-dependent data (DATAROOTDIR/locale)
+CMAKE_INSTALL_LOCALEDIR:PATH=
+
+//Modifiable single-machine data (var)
+CMAKE_INSTALL_LOCALSTATEDIR:PATH=var
+
+//Man documentation (DATAROOTDIR/man)
+CMAKE_INSTALL_MANDIR:PATH=
+
+//C header files for non-gcc (/usr/include)
+CMAKE_INSTALL_OLDINCLUDEDIR:PATH=/usr/include
+
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/LEDMatrix_R2D2
+
+//Run-time variable data (LOCALSTATEDIR/run)
+CMAKE_INSTALL_RUNSTATEDIR:PATH=
+
+//System admin executables (sbin)
+CMAKE_INSTALL_SBINDIR:PATH=sbin
+
+//Modifiable architecture-independent data (com)
+CMAKE_INSTALL_SHAREDSTATEDIR:PATH=com
+
+//Read-only single-machine data (etc)
+CMAKE_INSTALL_SYSCONFDIR:PATH=etc
+
+//Library output dir.
+CMAKE_LIBRARY_OUTPUT_DIRECTORY:PATH=C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/lib
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=C:/TIBestanden/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/ld.exe
@@ -158,6 +224,9 @@ CMAKE_OBJCOPY:FILEPATH=C:/TIBestanden/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/
 //Path to a program.
 CMAKE_OBJDUMP:FILEPATH=C:/TIBestanden/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/objdump.exe
 
+//PDB (MSVC debug symbol)output dir.
+CMAKE_PDB_OUTPUT_DIRECTORY:PATH=C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/bin
+
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
 
@@ -166,6 +235,21 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
 CMAKE_PROJECT_NAME:STATIC=LEDMatrix_R2D2
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION:STATIC=1.9.5
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=1
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MINOR:STATIC=9
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_PATCH:STATIC=5
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_TWEAK:STATIC=
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=C:/TIBestanden/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/ranlib.exe
@@ -190,6 +274,9 @@ CMAKE_RC_FLAGS_RELWITHDEBINFO:STRING=
 
 //Path to a program.
 CMAKE_READELF:FILEPATH=C:/TIBestanden/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/readelf.exe
+
+//Executable/dll output dir.
+CMAKE_RUNTIME_OUTPUT_DIRECTORY:PATH=C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/bin
 
 //Flags used by the linker during the creation of shared libraries
 // during all build types.
@@ -247,11 +334,53 @@ CMAKE_STRIP:FILEPATH=C:/TIBestanden/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mi
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//The directory containing a CMake configuration file for CURL.
+CURL_DIR:PATH=CURL_DIR-NOTFOUND
+
+//Path to a file.
+CURL_INCLUDE_DIR:PATH=CURL_INCLUDE_DIR-NOTFOUND
+
+//Path to a library.
+CURL_LIBRARY_DEBUG:FILEPATH=CURL_LIBRARY_DEBUG-NOTFOUND
+
+//Path to a library.
+CURL_LIBRARY_RELEASE:FILEPATH=CURL_LIBRARY_RELEASE-NOTFOUND
+
+//Use static (MT/MTd) Windows runtime
+JSONCPP_STATIC_WINDOWS_RUNTIME:BOOL=OFF
+
+//-D...=1 to use memory-wiping allocator for STL
+JSONCPP_USE_SECURE_MEMORY:STRING=0
+
+//Generate and install cmake package files
+JSONCPP_WITH_CMAKE_PACKAGE:BOOL=ON
+
+//Compile JsonCpp example
+JSONCPP_WITH_EXAMPLE:BOOL=OFF
+
+//Generate and install .pc files
+JSONCPP_WITH_PKGCONFIG_SUPPORT:BOOL=ON
+
+//Automatically run unit-tests as a post build step
+JSONCPP_WITH_POST_BUILD_UNITTEST:BOOL=ON
+
+//Issue all the warnings demanded by strict ISO C and ISO C++
+JSONCPP_WITH_STRICT_ISO:BOOL=ON
+
+//Compile and (for jsoncpp_check) run JsonCpp test executables
+JSONCPP_WITH_TESTS:BOOL=ON
+
+//Force compilation to fail if a warning occurs
+JSONCPP_WITH_WARNING_AS_ERROR:BOOL=OFF
+
 //Value Computed by CMake
 LEDMatrix_R2D2_BINARY_DIR:STATIC=C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw
 
 //Value Computed by CMake
 LEDMatrix_R2D2_SOURCE_DIR:STATIC=C:/Users/jasie/CLionProjects/LEDMatrix_R2D2
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
 
 //Path to a library.
 SFML_AUDIO_LIBRARY_DYNAMIC_DEBUG:FILEPATH=C:/TIBestanden/SFML-2.5.1/lib/libsfml-audio-d.a
@@ -318,6 +447,12 @@ SFML_WINDOW_LIBRARY_STATIC_DEBUG:FILEPATH=C:/TIBestanden/SFML-2.5.1/lib/libsfml-
 
 //Path to a library.
 SFML_WINDOW_LIBRARY_STATIC_RELEASE:FILEPATH=C:/TIBestanden/SFML-2.5.1/lib/libsfml-window-s.a
+
+//Value Computed by CMake
+jsoncpp_BINARY_DIR:STATIC=C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/jsoncpp-1.9.5
+
+//Value Computed by CMake
+jsoncpp_SOURCE_DIR:STATIC=C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/jsoncpp-1.9.5
 
 
 ########################
@@ -415,6 +550,38 @@ CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/jasie/CLionProjects/LEDMatrix_R2D2
+//ADVANCED property for variable: CMAKE_INSTALL_BINDIR
+CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATADIR
+CMAKE_INSTALL_DATADIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATAROOTDIR
+CMAKE_INSTALL_DATAROOTDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DOCDIR
+CMAKE_INSTALL_DOCDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INCLUDEDIR
+CMAKE_INSTALL_INCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INFODIR
+CMAKE_INSTALL_INFODIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBDIR
+CMAKE_INSTALL_LIBDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBEXECDIR
+CMAKE_INSTALL_LIBEXECDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALEDIR
+CMAKE_INSTALL_LOCALEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALSTATEDIR
+CMAKE_INSTALL_LOCALSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_MANDIR
+CMAKE_INSTALL_MANDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_OLDINCLUDEDIR
+CMAKE_INSTALL_OLDINCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_RUNSTATEDIR
+CMAKE_INSTALL_RUNSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SBINDIR
+CMAKE_INSTALL_SBINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SHAREDSTATEDIR
+CMAKE_INSTALL_SHAREDSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SYSCONFDIR
+CMAKE_INSTALL_SYSCONFDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MAKE_PROGRAM
@@ -486,6 +653,16 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_STRIP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_DIR
+CURL_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_INCLUDE_DIR
+CURL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_LIBRARY_DEBUG
+CURL_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_LIBRARY_RELEASE
+CURL_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SFML_AUDIO_LIBRARY_DYNAMIC_DEBUG
 SFML_AUDIO_LIBRARY_DYNAMIC_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SFML_AUDIO_LIBRARY_DYNAMIC_RELEASE
@@ -526,4 +703,6 @@ SFML_WINDOW_LIBRARY_DYNAMIC_RELEASE-ADVANCED:INTERNAL=1
 SFML_WINDOW_LIBRARY_STATIC_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SFML_WINDOW_LIBRARY_STATIC_RELEASE
 SFML_WINDOW_LIBRARY_STATIC_RELEASE-ADVANCED:INTERNAL=1
+//CMAKE_INSTALL_PREFIX during last run
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/LEDMatrix_R2D2
 

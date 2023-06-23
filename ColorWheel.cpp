@@ -43,9 +43,9 @@ void ColorWheel::colorInterface() {
         sf::Mouse::getPosition(w).y > pos.y+size*0 &&
         sf::Mouse::getPosition(w).y < pos.y+size*1 &&
         sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-        changeColor(sf::Color(255,255,255));
+        changeColor(sf::Color(255,255,255, alpha));
         //change the current drawing color to white
-        std::cout <<"wit";
+//        std::cout <<"wit";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*1 &&
@@ -53,9 +53,9 @@ void ColorWheel::colorInterface() {
        sf::Mouse::getPosition(w).y > pos.y+size*0 &&
        sf::Mouse::getPosition(w).y < pos.y+size*1  &&
        sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-        changeColor(sf::Color(0,0,0));
+        changeColor(sf::Color(0,0,0, alpha));
         //change the current drawing color to black
-        std::cout << "Zwart";
+//        std::cout << "Zwart";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*2 &&
@@ -63,9 +63,9 @@ void ColorWheel::colorInterface() {
        sf::Mouse::getPosition(w).y > pos.y+size*0 &&
        sf::Mouse::getPosition(w).y < pos.y+size*1 &&
        sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-        changeColor(sf::Color(255,0,0));
+        changeColor(sf::Color(255,0,0, alpha));
         //change the current drawing color to red
-        std::cout << "rood";
+//        std::cout << "rood";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*3 &&
@@ -73,9 +73,9 @@ void ColorWheel::colorInterface() {
        sf::Mouse::getPosition(w).y > pos.y+size*0 &&
        sf::Mouse::getPosition(w).y < pos.y+size*1&&
        sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-        changeColor(sf::Color(0,255,0));
+        changeColor(sf::Color(0,255,0, alpha));
         //change the current drawing color to green
-        std::cout << "groen";
+//        std::cout << "groen";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*4 &&
@@ -83,9 +83,9 @@ void ColorWheel::colorInterface() {
        sf::Mouse::getPosition(w).y > pos.y+size*0 &&
        sf::Mouse::getPosition(w).y < pos.y+size*1 &&
        sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        changeColor(sf::Color(0, 0, 255));
+        changeColor(sf::Color(0, 0, 255, alpha));
         //change the current drawing color to blue
-        std::cout << "blauw";
+//        std::cout << "blauw";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*5 &&
@@ -93,9 +93,9 @@ void ColorWheel::colorInterface() {
        sf::Mouse::getPosition(w).y > pos.y+size*0 &&
        sf::Mouse::getPosition(w).y < pos.y+size*1 &&
        sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        changeColor(sf::Color(255,0,255));
+        changeColor(sf::Color(255,0,255, alpha));
         //change the current drawing color to purple
-        std::cout << "purple";
+//        std::cout << "purple";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*6 &&
@@ -103,9 +103,9 @@ void ColorWheel::colorInterface() {
        sf::Mouse::getPosition(w).y > pos.y+size*0 &&
        sf::Mouse::getPosition(w).y < pos.y+size*1 &&
        sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        changeColor(sf::Color(0,255,255));
+        changeColor(sf::Color(0,255,255, alpha));
         //change the current drawing color to cyan
-        std::cout << "cyan";
+//        std::cout << "cyan";
     }
 }
 
