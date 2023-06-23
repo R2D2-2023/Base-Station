@@ -19,8 +19,6 @@ void resizeImage(const sf::Image& originalImage, sf::Image& resizedImage)
     }
 }
 
-// token: sl.Bg2pis0-Wax9LMFJje5lrNicoRyLk7hn4bYWFYW-M2W-Lc3Qr45w4uPHeUAxkLzYTkM8tdDujMr_peAkmCIGz88_xriaD7Nt_ETiX-IHecmVhGEkw4_X-OwAhHGweLp4BxZo87U
-
 int main() {
     sf::RenderWindow window(sf::VideoMode{480, 370}, "LED Visualisation",  sf::Style::Close);
 
