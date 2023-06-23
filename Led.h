@@ -15,7 +15,7 @@ private:
     sf::Color color;
 
 public:
-    Led(sf::RenderWindow &w, sf::Vector2f position = {0,0}, sf::Color color = sf::Color::Black);
+    Led(sf::RenderWindow &w, sf::Vector2f position = {0,0}, sf::Color color = sf::Color(0,0,0,50));
     void draw();
     void changeColor(sf::Color new_color);
 

@@ -14,13 +14,13 @@
 class Matrix {
 private:
     sf::RenderWindow &w;
-    std::vector<std::vector<Led>> matrix_vec = {{}};
-
     sf::Vector2f matrix_pos;
+
     int rows = 16;
     int cols = 32;
-
 public:
+
+    std::vector<std::vector<Led>> matrix_vec = {{}};
     Matrix(sf::RenderWindow &w, sf::Vector2f matrixPos = {0,0});
     void draw();
     void instantColor(int red, int green, int blue);
@@ -30,7 +30,7 @@ public:
         std::ofstream file;
         file.open(filename);
         for (int i = 0; i < matrix_vec.size(); ++i) {
-            for (int j = matrix_vec[i].size()-1; j>=0; --j) {
+            for (int j = 0; j<matrix_vec[i].size(); ++j) {
                 file << matrix_vec[i][j].getColor()[0] << "," << matrix_vec[i][j].getColor()[1] << "," << matrix_vec[i][j].getColor()[2] << "\n";
             }
 //            file << "\n";

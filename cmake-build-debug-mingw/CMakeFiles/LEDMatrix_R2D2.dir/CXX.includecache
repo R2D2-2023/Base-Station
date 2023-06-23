@@ -686,10 +686,6 @@ SFML/Graphics.hpp
 vector
 -
 
-C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Matrix.cpp
-Matrix.h
-C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Matrix.h
-
 C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Matrix.h
 array
 -
@@ -702,14 +698,6 @@ vector
 iostream
 -
 fstream
--
-
-C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Painting.cpp
-Painting.h
-C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Painting.h
-iostream
--
-cstdlib
 -
 
 C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/Painting.h

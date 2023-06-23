@@ -15,7 +15,7 @@ sf::Vector2i Painting::locateMousePixel() {
     sf::Vector2i mouse = sf::Mouse::getPosition(w);
     mouse.x = mouse.x/10;
     mouse.y = mouse.y/10 + 1; //+1 for offset.
-      std::cout << mouse.y << std::endl;
+//      std::cout << mouse.y << std::endl;
     if (mouse.y <= 0)
         mouse.y = 0;
     if (mouse.y >= 32)
@@ -28,7 +28,7 @@ sf::Vector2i Painting::locateMousePixel() {
         mouse.x %= 16;
     if (mouse.x <= 0)
         mouse.x = 0;
-    std::cout << mouse.x << std::endl;
+//    std::cout << mouse.x << std::endl;
     return mouse;
 }
 
