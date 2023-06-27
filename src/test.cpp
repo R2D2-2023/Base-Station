@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include "HX711.h"
+#include <wiringSerial.h>
+#include <sstream>
 
 int clock_pin = 9;
 int data_pin1 = 2;
@@ -21,15 +23,23 @@ int motor_pin_2 = 22;
 HX711 scale_1(clock_pin, data_pin1);
 HX711 scale_2(clock_pin, data_pin2);
 
-bool motor1_aan = 0;
-bool motor2_aan = 1;
 bool hall_sensor_detected = 0;
 
 bool light_sensor1_detected = 0;
 bool light_sensor2_detected = 0;
 
+bool robot_charging = 0;
+
+char serial_port[12];
+
+char serial_text[3]; // max length for serial string.
+
 int main() {
    	wiringPiSetup();
+   	
+	serialOpen("/dev/ttyACM0", 115200);
+	serialFlush(4);
+
     	std::cout << "Hello, World!" << std::endl;
     	scale_1.start(1058);// this works to calabrate the scale
     	scale_2.start(-185);//  ^^
@@ -38,22 +48,19 @@ int main() {
 	pinMode(motor_pin_1, OUTPUT);
 	pinMode(motor_pin_2, OUTPUT);
 
+
 	std::cout << "Starting in 3" << std::endl;
 	delay(1000);
 	std::cout << "Starting in 2" << std::endl;
 	delay(1000);
 	std::cout << "Starting in 1" << std::endl;
 	delay(1000);
+	digitalWrite(motor_pin_1, HIGH);
+	digitalWrite(motor_pin_2, HIGH);
     
     while (1){
-		//digitalWrite(motor_pin_1, 1);
-		//digitalWrite(motor_pin_2, 0);
-		//delay(3000);
-		//std::cout << "draaien" <<std::endl;
-		//digitalWrite(motor_pin_1, 0);
-		//digitalWrite(motor_pin_2, 1);
-		//delay(3000);
-	//}
+		serialFlush(4);
+		
         int grams1 = scale_1.getAvg(2);
 		int grams2 = scale_2.getAvg(2);
 		std::cout << "avg1:" << grams1 << "\t";
@@ -68,53 +75,74 @@ int main() {
 			//robot has entered the basestation. The arm can go down now. 
 			light_sensor2_detected = true;
 			std::cout << "Sensor2\n";
+		} 
+		
+		if(light_sensor1_detected && light_sensor2_detected){	
+			// robot has entered and is in position.
+			digitalWrite(motor_pin_1, HIGH);
+			digitalWrite(motor_pin_2, LOW);
+			while(!hall_sensor_detected){
+				if(digitalRead(hall_sensor_1)){
+					hall_sensor_detected = true;
+				}	
+			}
+			std::cout << "Robot will move down.\n";
 		}
 		
-	    if (grams1 >= 4000 || grams2 <= 2000){
+	    if (grams1 >= 4000 && grams2 <= 2000){
 			digitalWrite(motor_pin_1, LOW);
 			digitalWrite(motor_pin_2, LOW);
 			std::cout << "Opladen + schrijven" << std::endl;
 			delay(1000);
+			/*
+			try {
+				int system_result = system("/home/pi/BaseStationBashSkrippie/uploadArduino");
+				if(system_result == -1){
+					throw std::runtime_error("system call failed");
+				}
+			}
 			
-			system("/home/pi/BaseStationBashSkrippie/uploadArduino");
+			catch(const std::exception& error){
+				//set error for not uploading. 
+				std::cout<< "Error:  " << error.what() << std::endl;
+			}*/
+			
 			delay(5000);
-			
-			motor1_aan = !motor1_aan; 
-			motor2_aan = !motor2_aan;
-			digitalWrite(motor_pin_1, motor1_aan) ;
-			digitalWrite(motor_pin_2, motor2_aan) ;
-			hall_sensor_detected = 0;
-		}
-		if(light_sensor1_detected && light_sensor2_detected){
-			// robot has entered and is in position.
-			digitalWrite(motor_pin_1, motor1_aan);
-			digitalWrite(motor_pin_2, motor2_aan);
-			std::cout << "Robot will move down.\n";
+			robot_charging = 1;			
 		}
 		
-		if (!digitalRead(hall_sensor_1)){
+		while(robot_charging){
+			std::cout << serialDataAvail(4) << std::endl;
+			for (int i = 0; i <= 3; i++){
+				serial_text[i] = serialGetchar(4);
+			}
+						
+			if(serial_text[0] == 'h' &&serial_text[1] == 'e' && serial_text[2] == 'y'){
+				//charging done, arm starts going up. 
+				digitalWrite(motor_pin_1, LOW);
+				digitalWrite(motor_pin_2, HIGH);
+				light_sensor1_detected = 0;
+				light_sensor2_detected = 0;
+				robot_charging = 0;
+			}
+		}
+		
+		if (!digitalRead(hall_sensor_1 && !light_sensor1_detected && !light_sensor2_detected && hall_sensor_detected)){
 			// arm is full retracted
-			if (hall_sensor_detected != 1){
-				//std::cout << "retracted" << std::endl;
-				motor1_aan = !motor1_aan; 
-				motor2_aan = !motor2_aan;
-				digitalWrite(motor_pin_1, motor1_aan) ;
-				digitalWrite(motor_pin_2, motor2_aan) ;
-			}
-		hall_sensor_detected = 1;
-		}
-		else if (!digitalRead(hall_sensor_2)){
-			if (hall_sensor_detected != 0){
-				//arm is fully extended
-				//std::cout << "extended" << std::endl;
-				motor1_aan = !motor1_aan;
-				motor2_aan = !motor2_aan;
-				digitalWrite(motor_pin_1, motor1_aan) ;
-				digitalWrite(motor_pin_2, motor2_aan) ;
-			}
-		hall_sensor_detected = 0;
+			std::cout << "retracted" << std::endl;			
+			digitalWrite(motor_pin_1, LOW);
+			digitalWrite(motor_pin_2, LOW);
 		}
 		
+		else if (!digitalRead(hall_sensor_2)){
+			//arm is fully extended
+			std::cout << "extended" << std::endl;
+			digitalWrite(motor_pin_1, LOW);
+			digitalWrite(motor_pin_2, HIGH);
+			light_sensor1_detected = 0;
+			light_sensor2_detected = 0;
+			// Throw error, there is no robot here, or it became smaller then it used to be. 
+		}
 	delay(100);
 	}
 
