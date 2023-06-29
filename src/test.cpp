@@ -19,6 +19,7 @@ int hall_sensor_2 = 5;
 int motor_pin_1 = 21;
 int motor_pin_2 = 22;
 
+//int relais_pin = 23; 
 
 HX711 scale_1(clock_pin, data_pin1);
 HX711 scale_2(clock_pin, data_pin2);
@@ -33,7 +34,6 @@ bool robot_charging = 0;
 char serial_port[12];
 
 char serial_text[3]; // max length for serial string.
-
 int main() {
    	wiringPiSetup();
    	
@@ -44,9 +44,16 @@ int main() {
     	scale_1.start(1058);// this works to calabrate the scale
     	scale_2.start(-185);//  ^^
     	pinMode(hall_sensor_1, INPUT);
+
 	pinMode(hall_sensor_2, INPUT);
 	pinMode(motor_pin_1, OUTPUT);
 	pinMode(motor_pin_2, OUTPUT);
+	//pinMode(relais_pin, OUTPUT);
+	
+	digitalWrite(motor_pin_1, HIGH);
+	digitalWrite(motor_pin_2, HIGH);
+	//digitalWrite(relais_pin, LOW);
+
 
 
 	std::cout << "Starting in 3" << std::endl;
@@ -61,7 +68,7 @@ int main() {
     while (1){
 		serialFlush(4);
 		
-        int grams1 = scale_1.getAvg(2);
+    int grams1 = scale_1.getAvg(2);
 		int grams2 = scale_2.getAvg(2);
 		std::cout << "avg1:" << grams1 << "\t";
 		std::cout << "avg2:" << grams2 << std::endl;
@@ -119,32 +126,36 @@ int main() {
 						
 			if(serial_text[0] == 'h' &&serial_text[1] == 'e' && serial_text[2] == 'y'){
 				//charging done, arm starts going up. 
+				std::cout << "stop charging received\n";
 				digitalWrite(motor_pin_1, LOW);
 				digitalWrite(motor_pin_2, HIGH);
 				light_sensor1_detected = 0;
 				light_sensor2_detected = 0;
 				robot_charging = 0;
 			}
+			delay(1000);
+			
 		}
 		
-		if (!digitalRead(hall_sensor_1 && !light_sensor1_detected && !light_sensor2_detected && hall_sensor_detected)){
+		if (!digitalRead(hall_sensor_1) && !light_sensor1_detected && !light_sensor2_detected && hall_sensor_detected){
 			// arm is full retracted
 			std::cout << "retracted" << std::endl;			
 			digitalWrite(motor_pin_1, LOW);
 			digitalWrite(motor_pin_2, LOW);
+			hall_sensor_detected = !hall_sensor_detected;
 		}
 		
 		else if (!digitalRead(hall_sensor_2)){
 			//arm is fully extended
-			std::cout << "extended" << std::endl;
+			std::cout << "FULLY EXTENDED RETRACTING..." << std::endl;
 			digitalWrite(motor_pin_1, LOW);
 			digitalWrite(motor_pin_2, HIGH);
 			light_sensor1_detected = 0;
 			light_sensor2_detected = 0;
 			// Throw error, there is no robot here, or it became smaller then it used to be. 
+			delay(2000);
 		}
 	delay(100);
 	}
-
     return 0;
 }
