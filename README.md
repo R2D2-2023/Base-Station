@@ -11,3 +11,9 @@ We are the team base-station.
 >      - Powering on the Raspberry Pi for data transfers.
 
 To see the [scrumboard](https://github.com/orgs/R2D2-2023/projects/4) of our team
+
+To run the program for the charging pi navigate to the directory and enter the following line in a terminal: 
+g++ main.cpp HX711.cpp HX711.hpp -lwiringPi -o charge_pi 
+
+Then to run the program enter:
+sudo ./charge_pi
