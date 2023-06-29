@@ -34,21 +34,17 @@ bool robot_charging = 0;
 char serial_port[12];
 
 char serial_text[3]; // max length for serial string.
-
-//bool test= false;
-
 int main() {
    	wiringPiSetup();
    	
-	serialOpen("/dev/ttyACM0	", 115200);
+	serialOpen("/dev/ttyACM0", 115200);
 	serialFlush(4);
 
-    std::cout << "Hello, World!" << std::endl;
-    scale_1.start(1058);// this works to calabrate the scale
-    scale_2.start(-185);//  ^^
-    pinMode(light_sensor1, INPUT);
-	pinMode(light_sensor2, INPUT);
-	pinMode(hall_sensor_1, INPUT);
+    	std::cout << "Hello, World!" << std::endl;
+    	scale_1.start(1058);// this works to calabrate the scale
+    	scale_2.start(-185);//  ^^
+    	pinMode(hall_sensor_1, INPUT);
+
 	pinMode(hall_sensor_2, INPUT);
 	pinMode(motor_pin_1, OUTPUT);
 	pinMode(motor_pin_2, OUTPUT);
@@ -59,19 +55,20 @@ int main() {
 	//digitalWrite(relais_pin, LOW);
 
 
+
 	std::cout << "Starting in 3" << std::endl;
 	delay(1000);
 	std::cout << "Starting in 2" << std::endl;
 	delay(1000);
 	std::cout << "Starting in 1" << std::endl;
 	delay(1000);
+	digitalWrite(motor_pin_1, HIGH);
+	digitalWrite(motor_pin_2, HIGH);
     
     while (1){
 		serialFlush(4);
-		//digitalWrite(relais_pin, test);
-		//test = !test;
 		
-        int grams1 = scale_1.getAvg(2);
+    int grams1 = scale_1.getAvg(2);
 		int grams2 = scale_2.getAvg(2);
 		std::cout << "avg1:" << grams1 << "\t";
 		std::cout << "avg2:" << grams2 << std::endl;
@@ -118,14 +115,12 @@ int main() {
 			}*/
 			
 			delay(5000);
-			robot_charging = 1;
+			robot_charging = 1;			
 		}
 		
 		while(robot_charging){
-			//std::cout << serialDataAvail(4) << std::endl;
-			std::cout<<"charging\n";
+			std::cout << serialDataAvail(4) << std::endl;
 			for (int i = 0; i <= 3; i++){
-				std::cout << "test";
 				serial_text[i] = serialGetchar(4);
 			}
 						
