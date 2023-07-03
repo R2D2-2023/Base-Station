@@ -2,8 +2,8 @@
 #include "Matrix.h"
 #include "ColorWheel.h"
 #include "Painting.h"
-#include "curl-8.1.2/curl.h"
-#include "jsoncpp-1.9.5/json.h"
+#include "curl.h"
+#include "json.h"
 
 void resizeImage(const sf::Image& originalImage, sf::Image& resizedImage)
 {
@@ -23,6 +23,8 @@ void resizeImage(const sf::Image& originalImage, sf::Image& resizedImage)
 int main() {
     sf::RenderWindow window(sf::VideoMode{480, 370}, "LED Visualisation",  sf::Style::Close);
 
+    Dropbox dropbox;
+    
     Matrix matrix1(window, sf::Vector2f(0,0));
     Matrix matrix2(window, sf::Vector2f(16,0));
     Matrix matrix3(window, sf::Vector2f(32,0));
