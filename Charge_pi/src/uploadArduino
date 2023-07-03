@@ -1,0 +1,37 @@
+#!/bin/bash
+
+echo "Cool skrippie om je arduino te flashen"
+echo "------------------------------------"
+arduino-cli board list
+echo "------------------------------------"
+echo "Kies welke usb je wilt"
+echo "Type 1 voor '/dev/ttyUSB0', type 2 voor '/dev/ttyAMC0', negeer '/dev/AMA0'"
+read -n1 -p "Keuze: " keuze
+case $keuze in
+	1) portNr=/dev/ttyUSB0 ;;
+	2) portNr=/dev/ttyAMC0 ;;
+	*) echo "Verkeerde keuze : $keuze" 
+		exit 1;;
+esac
+echo
+echo "je port is : $portNr"
+echo "------------------------------------"
+echo "Kies welk board je wilt"
+echo "Type 1 voor een Uno, 2 voor een Mega"
+read -n1 -p "Keuze: " keuze
+case $keuze in
+	1) fqbn=arduino:avr:uno ;;
+	2) fqbn=arduino:avr:mega ;;
+	*) echo "Verkeerde keuze : $keuze" 
+		exit 1;;
+esac
+echo
+echo "------------------------------------"
+arduino-cli compile --fqbn $fqbn /home/pi/flashData
+echo "------------------------------------"
+echo "compiled"
+echo "------------------------------------"
+arduino-cli upload -p $portNr --fqbn $fqbn /home/pi/flashData
+echo "------------------------------------"
+echo "Upload completed"
+
