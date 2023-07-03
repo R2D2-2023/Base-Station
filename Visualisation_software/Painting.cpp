@@ -24,7 +24,7 @@
  */
 Painting::Painting(sf::RenderWindow & w, ColorWheel & wheel, Matrix & matrix) : w(w), wheel(wheel), matrix(matrix){
     current_paint_color = wheel.getColor();
-    matrix.changePixelColor(0,1, sf::Color::Blue);
+    //matrix.changePixelColor(0,1, sf::Color::Blue);
 }
 
 /**
@@ -37,7 +37,7 @@ sf::Vector2i Painting::locateMousePixel() {
     mouse.x = mouse.x/10;
     mouse.y = mouse.y/10 + 1; //+1 for offset.
     if (mouse.y <= 0)
-        mouse.y = 0;
+        mouse.y = 1;
     if (mouse.y >= 32)
         mouse.y = 32;
     if (mouse.x > 32)
