@@ -1,11 +1,11 @@
 #!/bin/bash
 
 dir=./BaseStationBashSkrippie
-dateTime=`date +"%d-%b-%Y_%H-%M-%S"`
+date_time=`date +"%d-%b-%Y_%H-%M-%S"`
 githubFolderName=codeGithub
 
 #cd $dir
-mkdir -p ./Backup_${dateTime}
+mkdir -p ./Backup_${date_time}
 
 echo
 for filename in *; do
