@@ -24,10 +24,19 @@ ColorWheel::ColorWheel(sf::RenderWindow &w): w(w){
     current_color = sf::Color(255, 0, 0);
 }
 
+/**
+ * @brief changes the current color used to draw.
+ * 
+ */
 void ColorWheel::changeColor(sf::Color new_color) {
     current_color = new_color;
 }
 
+
+/**
+ * @brief draws the colored squares at the bottom of the software.
+ * 
+ */
 void ColorWheel::makeColors(sf::Color color, sf::Vector2f position){
     sf::RectangleShape shape;
     shape.setSize(sf::Vector2f(50,50));
