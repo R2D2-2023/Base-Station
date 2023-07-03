@@ -2,12 +2,32 @@
 // Created by jasie on 30-6-2023.
 //
 
+/**
+ * @file Dropbox.cpp
+ * @author Jasper (you@domain.com)
+ * @brief the class Dropbox, this is used to upload led panel info to dropbox automatically.  
+ * @version 0.1
+ * @date 2023-07-03
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #include "Dropbox.h"
 
+/**
+ * @brief Construct a new Dropbox::Dropbox object.
+ * Retrieves new short-lived access code for the Dropbox V2 API. 
+ */
 Dropbox::Dropbox() {
     access_token = getAccessToken();
 }
 
+/**
+ * @brief Test connection to dropbox and upload the file specified.
+ * 
+ * @param local_file_path path to local file you want to upload.
+ */
 void Dropbox::run(const std::string& local_file_path) {
     CURL *curl;
     CURLcode res;
@@ -59,15 +79,20 @@ void Dropbox::run(const std::string& local_file_path) {
     printf("Done!\n");
 }
 
-// Callback function to write the response into a string
+/**
+ * @brief Callback function to write the response (JSON) to string.
+ * 
+ */
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* response) {
     size_t totalSize = size * nmemb;
     response->append((char*)contents, totalSize);
     return totalSize;
 }
 
-using json = nlohmann::json;
-
+/**
+ * @brief With the use of the Dropbox V2 API offline refresh key, ask a new short-lived access token.
+ * Response will be in JSON format and then extracts "access_token".
+ */
 std::string Dropbox::getAccessToken() {
 
     curl_global_init(CURL_GLOBAL_DEFAULT);
@@ -97,7 +122,7 @@ std::string Dropbox::getAccessToken() {
             // Request succeeded, handle the response here
 //            std::cout << "Response: " << response << std::endl;
 
-            json jsonResponse = json::parse(response);
+            nlohmann::json jsonResponse = nlohmann::json::parse(response);
 
             // Retrieve the access_token value
             std::string accessToken = jsonResponse["access_token"];
