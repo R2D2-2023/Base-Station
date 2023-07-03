@@ -41,11 +41,13 @@ int main() {
     sf::Image resized_image;
     resized_image.create(481,321);
     if (!image.loadFromFile("image.png")){
-        std::cout << "No image.png found\n";
+        std::cerr << "No image.png found\nIf you want to use an image, place 'image.png' in the same folder as .exe\n";
     }
     else{
         resizeImage(image, resized_image);
     }
+
+    std::cout << "To save file locally and upload to dropbox, close the drawing window.\n To close without saving, close the console.\n";
 
     bool set_as_background = 0;
     bool draw_background = 1;
