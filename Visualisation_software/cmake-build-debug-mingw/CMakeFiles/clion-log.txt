@@ -1,0 +1,14 @@
+"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" C:\Users\jasie\CLionProjects\LEDMatrix_R2D2
+-- JsonCpp Version: 1.9.5
+CMake Error at jsoncpp-1.9.5/CMakeLists.txt:169 (include):
+  include could not find requested file:
+
+    JoinPaths
+
+
+CMake Error at jsoncpp-1.9.5/CMakeLists.txt:171 (join_paths):
+  Unknown CMake command "join_paths".
+
+
+-- Configuring incomplete, errors occurred!
+See also "C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/CMakeFiles/CMakeOutput.log".
