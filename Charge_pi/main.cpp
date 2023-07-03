@@ -20,7 +20,6 @@ int hall_sensor_2 = 5;
 int motor_pin_1 = 21;
 int motor_pin_2 = 22;
 
-//int relais_pin = 23; 
 
 HX711 scale_1(clock_pin, data_pin1);
 HX711 scale_2(clock_pin, data_pin2);
@@ -28,16 +27,15 @@ HX711 scale_2(clock_pin, data_pin2);
 int state = 0; //0 = idle, 1 = robot entering, 2 = moving down, 3 = charging, 4 = going up
 
 char serial_port[12];
-char serial_text[3]; // max length for serial string.
+std::string serial_text; // max length for serial string.
 
 
 void setup(){
 	wiringPiSetup();
    	
-	serialOpen("/dev/ttyACM0	", 115200);
+	serialOpen("/dev/ttyACM2", 115200);
 	serialFlush(4);
 
-    std::cout << "Hello, World!" << std::endl;
     scale_1.start(1058);// this works to calabrate the scale
     scale_2.start(-185);//  ^^
     pinMode(light_sensor1, INPUT);
@@ -46,11 +44,9 @@ void setup(){
 	pinMode(hall_sensor_2, INPUT);
 	pinMode(motor_pin_1, OUTPUT);
 	pinMode(motor_pin_2, OUTPUT);
-	//pinMode(relais_pin, OUTPUT);
 	
 	digitalWrite(motor_pin_1, HIGH);
 	digitalWrite(motor_pin_2, HIGH);
-	//digitalWrite(relais_pin, LOW);
 
 
 	std::cout << "Starting in 3" << std::endl;
@@ -62,6 +58,7 @@ void setup(){
 }
 
 int main() {
+	
 	setup();
 	int timer = millis();
 	while (1){
@@ -94,7 +91,6 @@ int main() {
 						digitalWrite(motor_pin_2, HIGH);
 						state = 4;
 					}
-					
 					int grams1 = scale_1.getAvg(2);
 					int grams2 = scale_2.getAvg(2);
 					std::cout << "avg1:" << grams1 << "\t";
@@ -121,9 +117,12 @@ int main() {
 				break;}
 				case 3:{
 					std::cout<<"charging\n";
-					for (int i = 0; i <= 3; i++){
-						std::cout << "test";
-						serial_text[i] = serialGetchar(4);
+					if(serialDataAvail(4)){
+						std::cout << "Data available\n";
+						for (int i = 0; i <= 3; i++){
+							serial_text[i] = serialGetchar(4);
+						}
+						std::cout << serial_text.c_str() << std::endl; 	
 					}
 								
 					if(serial_text[0] == 'h' &&serial_text[1] == 'e' && serial_text[2] == 'y'){
@@ -146,6 +145,6 @@ int main() {
 				break;}
 				
 		}
-		delay(1000);
+		delay(500);
 	}
 }
