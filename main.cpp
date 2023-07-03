@@ -14,33 +14,30 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <ctime>
+#include <chrono>
 
 #include <wiringSerial.h>
 
 #include "Matrix.hpp"
-#include "TopMatrix.hpp"
-#include "SideMatrix.hpp"
 
-
-using rgb_matrix::RGBMatrix;
-using rgb_matrix::Canvas;
-
-std::vector<std::vector<int>> matrix1;
-std::vector<std::vector<int>> matrix2;
-std::vector<std::vector<int>> matrix3;
+//ToDo:
+//iets met de map functie klopt niet
+//soms kunnen de files niet gevonden worden
 
 volatile bool interrupt_received = false;
 static void InterruptHandler(int signo) {
   interrupt_received = true;
 }
 
-long map(long x, long in_min, long in_max, long out_min, long out_max){
+//simple map function to get variable in 1 range to other range.
+long map(float x, float in_min, float in_max, float out_min, float out_max){
 	return(x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+//get the voltage of the robot fromt he database.
 std::string readFromDB(){
 	system("/usr/bin/python /home/pi/basedstation/dataBase.py");
-	sleep(1);
+	usleep(200000);	//wait for python script to be done.
 	std::string bestands_naam = "voltage.txt";
 	std::ifstream voltage(bestands_naam);
 	if(!voltage.is_open()){
@@ -52,11 +49,21 @@ std::string readFromDB(){
 }
 
 
-std::vector<std::vector<int>> makeBatteryIcon(Canvas *canvas, int battery_stage){
-		
+std::vector<std::vector<int>> makeBatteryIcon(int battery_stage){
+	//calculate rgb values based of battery_stage
 	int red = round(map(battery_stage, 1, 5, 255, 0));
 	int green = round(map(battery_stage, 1, 5, 0, 255));
 	int blue = 0;
+	
+	if(battery_stage < 1){
+		red = 255;
+		green = 0;
+	}
+	else if(battery_stage > 5){
+		red = 0;
+		green = 255;
+	}
+	
 	std::vector<std::vector<int>> matrix = {
 {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
 {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
@@ -138,119 +145,97 @@ switch(1){
 			}
 		}
 		if(battery_stage == 5){break;}
-}
-return matrix;
+	}
+	return matrix;
 }
 
-static void readFile(int n){
-  std::string bestands_naam = "./led_panelen/Paneel" + std::to_string(n) + ".txt";
-  std::ifstream paneel(bestands_naam);
-  if(!paneel.is_open()){
-    std::cerr << "could not open file" << std::endl;
-    return;
-  }
-      
-    if(n == 1){
-      matrix1.clear();
-    }
-    else if(n ==2){
-      matrix2.clear();
-    }
-    else if(n ==3){
-      matrix3.clear();
-    }
-
-  std::vector<int> matrix;
-  std::string line;
-  while(getline(paneel, line)){
-    matrix.clear();
-    std::stringstream ss(line);
-    std::string token;
-    while(std::getline(ss, token, ',')){
-      matrix.push_back(std::stoi(token));
-    }
-    if(n == 1){
-      matrix1.push_back(matrix);
-    }
-    else if(n ==2){
-      matrix2.push_back(matrix);
-    }
-    else if(n ==3){
-      matrix3.push_back(matrix);
-    }
-  }
+std::vector<std::vector<int>> readFile(int n){
+	std::string bestands_naam = "./led_panelen/Paneel" + std::to_string(n) + ".txt";
+	std::ifstream paneel(bestands_naam);
+	if(!paneel.is_open()){
+		throw (n);
+	}
+	std::vector<std::vector<int>> tmp_matrix;
+	std::vector<int> tmp_pixel;
+	std::string line;
+	while(getline(paneel, line)){
+		tmp_pixel.clear();
+		std::stringstream ss(line);
+		std::string token;
+		while(std::getline(ss, token, ',')){
+			tmp_pixel.push_back(std::stoi(token));
+		}
+		tmp_matrix.push_back(tmp_pixel);
+	}
+	return tmp_matrix;
 }
 
 int main(int argc, char *argv[]) {
-	/*
-	while(true){
-	serialOpen("/dev/ttyUSB0", 115200);
-	serialPuts(4, "k");
-	serialClose(4);
-	
-	std::cout << "serial shit done" << std::endl;
-	}
-	*/
-  rgb_matrix::RGBMatrix::Options my_defaults;
-  my_defaults.hardware_mapping = "regular";  // or e.g. "adafruit-hat"
-  my_defaults.rows = 16;
-  my_defaults.cols = 32;
-  my_defaults.chain_length = 4;
+	//remember to also start download_panelinfo.sh along side this program to get the updated pixelarts.
+	//Initialize the library for the led matrices.
+	rgb_matrix::RGBMatrix::Options my_defaults;
+	my_defaults.hardware_mapping = "regular";
+	my_defaults.rows = 16;
+	my_defaults.cols = 32;
+	my_defaults.chain_length = 4;
+	my_defaults.parallel = 1;
+	my_defaults.show_refresh_rate = false;
+	my_defaults.limit_refresh_rate_hz = 100;
+	rgb_matrix::RuntimeOptions runtime_defaults;
+	runtime_defaults.gpio_slowdown = 4;
+	my_defaults.disable_hardware_pulsing = 1;
+	my_defaults.scan_mode = 0;
 
-  my_defaults.parallel = 1;
-  my_defaults.show_refresh_rate = true;
-  my_defaults.limit_refresh_rate_hz = 100;
+	rgb_matrix::Canvas *canvas = rgb_matrix::RGBMatrix::CreateFromFlags(&argc, &argv, &my_defaults);
+	if (canvas == NULL)
+		return 1;
+	signal(SIGTERM, InterruptHandler);
+	signal(SIGINT, InterruptHandler);
   
-  rgb_matrix::RuntimeOptions runtime_defaults;
-  runtime_defaults.gpio_slowdown = 4;
-  my_defaults.disable_hardware_pulsing = 1;
-  my_defaults.scan_mode = 0;
-
-  Canvas *canvas = rgb_matrix::RGBMatrix::CreateFromFlags(&argc, &argv, &my_defaults);
-  if (canvas == NULL)
-    return 1;
-  signal(SIGTERM, InterruptHandler);
-  signal(SIGINT, InterruptHandler);
-  
-  
-  
-  if(interrupt_received){
-	  return 0;
-  }
 	
-  //HIER CLASSES AANROEPEN
+	//construct classes so we can easily draw to the matrices.
 	Matrix matrix_top(canvas, 16, 32);
 	Matrix matrix_side_right(canvas, 16, 32, 32);
 	Matrix matrix_side_middle(canvas, 16, 32, 64);
 	Matrix matrix_side_left(canvas, 16, 32, 96);
 	
-	readFile(1);
-    readFile(2);
-    readFile(3);
-    sleep(1);
-    matrix_side_right.drawMatrix(matrix1);
-	matrix_side_middle.drawMatrix(matrix2);
-	matrix_side_left.drawMatrix(matrix3);
+	int battery_stage = map(std::stof(readFromDB()), 10.8, 12.6, 1, 5);
+	auto start_time = std::chrono::steady_clock::now() - std::chrono::seconds(60);
 	
-	int voltage = std::stoi(readFromDB());
-	int battery_stage = map(voltage, 10.8, 12.6, 1, 5);
-	std::vector<std::vector<int>> matrix = {};
 	while(true){
-	if(interrupt_received){
-	  return 0;
-  }
-	for(int i=1; i<=5; i++){
-		matrix.clear();
-		matrix = makeBatteryIcon(canvas, i);
-		matrix_top.drawMatrix(matrix);
-		sleep(1);
+		if(interrupt_received){
+			break;
+		}
 		
-	}}
-
-	sleep(1000);
-	
-
- //Animation finished. Shut down the RGB matrix.
-  canvas->Clear();
-  delete canvas;
+		auto current_time = std::chrono::steady_clock::now();
+		auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
+		if(elapsed_time >= 60){
+			start_time = current_time;
+			
+			try{
+				matrix_side_right.drawMatrix(readFile(1));
+				matrix_side_middle.drawMatrix(readFile(2));		
+				matrix_side_left.drawMatrix(readFile(3));
+			}
+			catch(int n){
+				std::cerr << "could not open file" << n << std::endl;
+			}
+			
+			
+			battery_stage = map(std::stof(readFromDB()), 10.8, 12.6, 1, 5);
+			
+			if(battery_stage > 0 && battery_stage < 6){
+				matrix_top.drawMatrix(makeBatteryIcon(battery_stage));
+			}
+		}
+		if(battery_stage < 1 || battery_stage > 5){
+			matrix_top.drawMatrix(makeBatteryIcon(battery_stage));
+			usleep(200000);
+			matrix_top.clearMatrix();
+			usleep(200000);
+		}
+	}	
+	//Animation finished. Shut down the RGB matrix.
+	canvas->Clear();
+	delete canvas;
 }
