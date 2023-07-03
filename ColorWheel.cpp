@@ -2,30 +2,17 @@
 // Created by Erik on 16-6-2023.
 //
 
-/**
- * @file ColorWheel.cpp
- * @author Erik (you@domain.com)
- * @brief the class colorWheel, this is used to change colors to draw.  
- * @version 0.1
- * @date 2023-07-03
- * 
- * @copyright Copyright (c) 2023
- * 
- */
 #include "ColorWheel.h"
 #include <iostream>
 
-/**
- * @brief Construct a new Color Wheel:: Color Wheel object
- * 
- * @param w a SFML window. 
- */
 ColorWheel::ColorWheel(sf::RenderWindow &w): w(w){
     current_color = sf::Color(255, 0, 0);
+//    std::cout << "loop\n";
 }
 
 void ColorWheel::changeColor(sf::Color new_color) {
     current_color = new_color;
+//    std::cout<<std::to_string(this->current_color.r) << std::endl;// << std::to_string(current_color.g) << std::to_string(current_color.b);
 }
 
 void ColorWheel::makeColors(sf::Color color, sf::Vector2f position){
@@ -41,10 +28,7 @@ void ColorWheel::makeColors(sf::Color color, sf::Vector2f position){
     w.draw(shape);
     w.draw(color_shape);
 }
-/**
- * @brief makes the inferface to choose the colors. 
- * 
- */
+
 void ColorWheel::colorInterface() {
     makeColors(sf::Color::White, sf::Vector2f(pos.x+size*0,pos.y));
     makeColors(sf::Color::Black, sf::Vector2f(pos.x+size*1,pos.y));
@@ -61,6 +45,7 @@ void ColorWheel::colorInterface() {
         sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         changeColor(sf::Color(255,255,255, alpha));
         //change the current drawing color to white
+//        std::cout <<"wit";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*1 &&
@@ -70,6 +55,7 @@ void ColorWheel::colorInterface() {
        sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         changeColor(sf::Color(0,0,0, alpha));
         //change the current drawing color to black
+//        std::cout << "Zwart";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*2 &&
@@ -79,6 +65,7 @@ void ColorWheel::colorInterface() {
        sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         changeColor(sf::Color(255,0,0, alpha));
         //change the current drawing color to red
+//        std::cout << "rood";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*3 &&
@@ -88,6 +75,7 @@ void ColorWheel::colorInterface() {
        sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         changeColor(sf::Color(0,255,0, alpha));
         //change the current drawing color to green
+//        std::cout << "groen";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*4 &&
@@ -97,6 +85,7 @@ void ColorWheel::colorInterface() {
        sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         changeColor(sf::Color(0, 0, 255, alpha));
         //change the current drawing color to blue
+//        std::cout << "blauw";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*5 &&
@@ -106,6 +95,7 @@ void ColorWheel::colorInterface() {
        sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         changeColor(sf::Color(255,0,255, alpha));
         //change the current drawing color to purple
+//        std::cout << "purple";
     }
 
     if(sf::Mouse::getPosition(w).x >= pos.x+size*6 &&
@@ -114,13 +104,13 @@ void ColorWheel::colorInterface() {
        sf::Mouse::getPosition(w).y < pos.y+size*1 &&
        sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         changeColor(sf::Color(0,255,255, alpha));
+        //change the current drawing color to cyan
+//        std::cout << "cyan";
     }
 }
-/**
- * @brief sends you the current chosen color which is selected from the color interface. 
- * 
- * @return sf::Color the color to draw.
- */
+
 sf::Color ColorWheel::getColor() {
+  //  std::cout<<"hallooooooo";
+    //std::cout << std::to_string(current_color.r) << std::to_string(current_color.g) << std::to_string(current_color.b);
     return current_color;
 }
