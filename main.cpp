@@ -1,8 +1,7 @@
 #include "Matrix.h"
 #include "ColorWheel.h"
 #include "Painting.h"
-#include "curl-8.1.2/curl.h"
-#include "jsoncpp-1.9.5/json.h"
+#include "Dropbox.h"
 
 void resizeImage(const sf::Image& originalImage, sf::Image& resizedImage)
 {
@@ -20,6 +19,9 @@ void resizeImage(const sf::Image& originalImage, sf::Image& resizedImage)
 }
 
 int main() {
+
+    Dropbox dropbox;
+
     sf::RenderWindow window(sf::VideoMode{480, 370}, "LED Visualisation",  sf::Style::Close);
 
     Matrix matrix1(window, sf::Vector2f(0,0));
@@ -48,7 +50,6 @@ int main() {
 
     bool set_as_background = 0;
     bool draw_background = 1;
-
     if (set_as_background){
         background.update(resized_image);
         sprite.setTexture(background);
@@ -58,16 +59,19 @@ int main() {
         for (int y = 0; y < matrix1.matrix_vec.size(); ++y) {
             for (int x = 0; x < matrix1.matrix_vec[y].size(); ++x) {
                 matrix1.matrix_vec[y][x].changeColor(resized_image.getPixel(x * 10, y * 10));
+//            std::cout << std::to_string(resized_image.getPixel(x*10,y*10).r), std::to_string(resized_image.getPixel(x*10,y*10).g), std::to_string(resized_image.getPixel(x*10,y*10).b);
             }
         }
         for (int y = 0; y < matrix2.matrix_vec.size(); ++y) {
             for (int x = 0; x < matrix2.matrix_vec[y].size(); ++x) {
                 matrix2.matrix_vec[y][x].changeColor(resized_image.getPixel((x + 16) * 10, y * 10));
+//            std::cout << std::to_string(resized_image.getPixel(x*10,y*10).r), std::to_string(resized_image.getPixel(x*10,y*10).g), std::to_string(resized_image.getPixel(x*10,y*10).b);
             }
         }
         for (int y = 0; y < matrix3.matrix_vec.size(); ++y) {
             for (int x = 0; x < matrix3.matrix_vec[y].size(); ++x) {
                 matrix3.matrix_vec[y][x].changeColor(resized_image.getPixel((x + 32) * 10, y * 10));
+//            std::cout << std::to_string(resized_image.getPixel(x*10,y*10).r), std::to_string(resized_image.getPixel(x*10,y*10).g), std::to_string(resized_image.getPixel(x*10,y*10).b);
             }
         }
     }
@@ -80,12 +84,15 @@ int main() {
 
 
         if(sf::Mouse::getPosition(window).x >= 0 && sf::Mouse::getPosition(window).x < 160 && sf::Mouse::getPosition(window).y <= 320 && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+//            std::cout << "Matrix1\n";
             painting1.changeLedPixelColor();
         }
         if(sf::Mouse::getPosition(window).x >= 161 && sf::Mouse::getPosition(window).x < 320 && sf::Mouse::getPosition(window).y <= 320 && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+//            std::cout << "Matrix2\n";
             painting2.changeLedPixelColor();
         }
         if(sf::Mouse::getPosition(window).x >= 321 && sf::Mouse::getPosition(window).x < 480 && sf::Mouse::getPosition(window).y <= 320 && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+//            std::cout << "Matrix3\n";
             painting3.changeLedPixelColor();
         }
 
@@ -101,11 +108,17 @@ int main() {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
-                matrix1.writeMatrixToFile("Paneel1.txt");
-                matrix2.writeMatrixToFile("Paneel2.txt");
-                matrix3.writeMatrixToFile("Paneel3.txt");
-                std::cout << "Closed and Saved.\n";
+                std::string paneel1_txt = "paneel1.txt";
+                std::string paneel2_txt = "paneel2.txt";
+                std::string paneel3_txt = "paneel3.txt";
+                matrix1.writeMatrixToFile(paneel1_txt);
+                matrix2.writeMatrixToFile(paneel2_txt);
+                matrix3.writeMatrixToFile(paneel3_txt);
+                dropbox.run(paneel1_txt);
+                dropbox.run(paneel2_txt);
+                dropbox.run(paneel3_txt);
                 window.close();
+                std::cout << "Closed and Saved.\n";
             }
         }
     }
