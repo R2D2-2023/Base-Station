@@ -65,14 +65,16 @@ void loop() {
           digitalWrite(motorPin2, LOW);
 
         }
-      }else{
+      }
+      else{
         Serial.println(f);
         Serial.println("Load is to HIGH");
         //The load is to high
         digitalWrite(motorPin1, LOW);
         digitalWrite(motorPin2, LOW);
       }
-  }else{
+  }
+  else{
     Serial.println("Robot left");
     //reverse if robot leaves
     if(digitalRead(pin1)){
@@ -80,7 +82,8 @@ void loop() {
         //reverse if robot leaves and he isnt at lowwest possition
      digitalWrite(motorPin2,HIGH);
      digitalWrite(motorPin1, LOW);
-    }else{
+    }
+    else{
         //if at lowest possition and robot isn't there it stays.
         Serial.println("robot left, arm is down. ");
         digitalWrite(motorPin2,LOW);
