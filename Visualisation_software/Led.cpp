@@ -47,3 +47,23 @@ void Led::draw(){
 void Led::changeColor(sf::Color new_color) {
      color = new_color;
 }
+
+/**
+ * @brief Get the position of a led.
+ *  Returns position {X,Y};
+ */
+sf::Vector2f Led::getPos(){
+    return position;
+}
+
+/**
+ * @brief Get color of a led.
+ * Returns vector<int>{R,G,B};
+ */
+std::vector<int> Led::getColor(){
+    std::vector<int> vec = {};
+    vec.push_back(color.r);
+    vec.push_back(color.g);
+    vec.push_back(color.b);
+    return vec;
+}
