@@ -36,7 +36,6 @@
         matrix_vec.emplace_back(row);
         pos.y +=10;
     }
-    //std::cout << matrix_vec.size() << " " << matrix_vec[0].size() << std::endl;
 }
 
 /**
