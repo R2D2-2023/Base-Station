@@ -24,7 +24,6 @@
  */
 Painting::Painting(sf::RenderWindow & w, ColorWheel & wheel, Matrix & matrix) : w(w), wheel(wheel), matrix(matrix){
     current_paint_color = wheel.getColor();
-    //matrix.changePixelColor(0,1, sf::Color::Blue);
 }
 
 /**
