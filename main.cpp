@@ -58,19 +58,16 @@ int main() {
         for (int y = 0; y < matrix1.matrix_vec.size(); ++y) {
             for (int x = 0; x < matrix1.matrix_vec[y].size(); ++x) {
                 matrix1.matrix_vec[y][x].changeColor(resized_image.getPixel(x * 10, y * 10));
-//            std::cout << std::to_string(resized_image.getPixel(x*10,y*10).r), std::to_string(resized_image.getPixel(x*10,y*10).g), std::to_string(resized_image.getPixel(x*10,y*10).b);
             }
         }
         for (int y = 0; y < matrix2.matrix_vec.size(); ++y) {
             for (int x = 0; x < matrix2.matrix_vec[y].size(); ++x) {
                 matrix2.matrix_vec[y][x].changeColor(resized_image.getPixel((x + 16) * 10, y * 10));
-//            std::cout << std::to_string(resized_image.getPixel(x*10,y*10).r), std::to_string(resized_image.getPixel(x*10,y*10).g), std::to_string(resized_image.getPixel(x*10,y*10).b);
             }
         }
         for (int y = 0; y < matrix3.matrix_vec.size(); ++y) {
             for (int x = 0; x < matrix3.matrix_vec[y].size(); ++x) {
                 matrix3.matrix_vec[y][x].changeColor(resized_image.getPixel((x + 32) * 10, y * 10));
-//            std::cout << std::to_string(resized_image.getPixel(x*10,y*10).r), std::to_string(resized_image.getPixel(x*10,y*10).g), std::to_string(resized_image.getPixel(x*10,y*10).b);
             }
         }
     }
@@ -83,15 +80,12 @@ int main() {
 
 
         if(sf::Mouse::getPosition(window).x >= 0 && sf::Mouse::getPosition(window).x < 160 && sf::Mouse::getPosition(window).y <= 320 && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-//            std::cout << "Matrix1\n";
             painting1.changeLedPixelColor();
         }
         if(sf::Mouse::getPosition(window).x >= 161 && sf::Mouse::getPosition(window).x < 320 && sf::Mouse::getPosition(window).y <= 320 && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-//            std::cout << "Matrix2\n";
             painting2.changeLedPixelColor();
         }
         if(sf::Mouse::getPosition(window).x >= 321 && sf::Mouse::getPosition(window).x < 480 && sf::Mouse::getPosition(window).y <= 320 && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-//            std::cout << "Matrix3\n";
             painting3.changeLedPixelColor();
         }
 
