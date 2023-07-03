@@ -19,17 +19,9 @@ public:
     void draw();
     void changeColor(sf::Color new_color);
 
-    sf::Vector2f getPos(){
-        return position;
-    }
+    sf::Vector2f getPos();
 
-    std::vector<int> getColor(){
-        std::vector<int> vec = {};
-        vec.push_back(color.r);
-        vec.push_back(color.g);
-        vec.push_back(color.b);
-        return vec;
-    }
+    std::vector<int> getColor();
 
 };
 
