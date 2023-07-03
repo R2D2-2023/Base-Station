@@ -1,3 +1,0 @@
-C:/Users/Erik/CLionProjects/Visualise/cmake-build-debug/CMakeFiles/Visualise.dir
-C:/Users/Erik/CLionProjects/Visualise/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Erik/CLionProjects/Visualise/cmake-build-debug/CMakeFiles/rebuild_cache.dir
