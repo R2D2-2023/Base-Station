@@ -1,3 +1,4 @@
+#include "Dropbox.h"
 #include "Matrix.h"
 #include "ColorWheel.h"
 #include "Painting.h"
@@ -100,12 +101,18 @@ int main() {
         sf::sleep( sf::milliseconds( 5));
         sf::Event event;
         while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                matrix1.writeMatrixToFile("Paneel1.txt");
-                matrix2.writeMatrixToFile("Paneel2.txt");
-                matrix3.writeMatrixToFile("Paneel3.txt");
-                std::cout << "Closed and Saved.\n";
+             if (event.type == sf::Event::Closed) {
+                std::string paneel1_txt = "paneel1.txt";
+                std::string paneel2_txt = "paneel2.txt";
+                std::string paneel3_txt = "paneel3.txt";
+                matrix1.writeMatrixToFile(paneel1_txt);
+                matrix2.writeMatrixToFile(paneel2_txt);
+                matrix3.writeMatrixToFile(paneel3_txt);
+                dropbox.run(paneel1_txt);
+                dropbox.run(paneel2_txt);
+                dropbox.run(paneel3_txt);
                 window.close();
+                std::cout << "Closed and Saved.\n";
             }
         }
     }
