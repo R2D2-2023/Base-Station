@@ -117,17 +117,8 @@ int main(int argc, char* argv[]) {
 						digitalWrite(motor_pin_2, LOW);
 						std::cout << "Opladen + schrijven" << std::endl;
 						delay(1000);
-						/*
-						try {
-							int system_result = system("/home/pi/BaseStationBashSkrippie/uploadArduino");
-							if(system_result == -1){
-								throw std::runtime_error("system call failed");
-							}
-						}
-						catch(const std::exception& error){
-							//set error for not uploading. 
-							std::cout<< "Error:  " << error.what() << std::endl;
-						}*/
+						system("/home/pi/BaseStationBashSkrippie/uploadArduino");
+						
 						delay(5000);
 						state = 3;
 					}
