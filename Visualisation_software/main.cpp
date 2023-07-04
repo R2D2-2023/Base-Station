@@ -106,9 +106,9 @@ int main() {
         sf::Event event;
         while (window.pollEvent(event)) {
              if (event.type == sf::Event::Closed) {
-                std::string paneel1_txt = "paneel1.txt";
+                std::string paneel1_txt = "paneel3.txt"; // Flipped this because code on led matrix reads different.
                 std::string paneel2_txt = "paneel2.txt";
-                std::string paneel3_txt = "paneel3.txt";
+                std::string paneel3_txt = "paneel1.txt"; // Flipped this because code on led matrix reads different.
                 matrix1.writeMatrixToFile(paneel1_txt);
                 matrix2.writeMatrixToFile(paneel2_txt);
                 matrix3.writeMatrixToFile(paneel3_txt);
