@@ -7,6 +7,23 @@
 #include <sstream>
 #include <string>
 
+#include <cstdlib>
+#include <thread>	// For sleep
+#include <atomic>
+#include <chrono>
+#include <cstring>
+#include "mqtt/async_client.h"
+
+
+const std::string DFLT_SERVER_ADDRESS { "tcp://145.89.224.225:1883" };
+
+const std::string TOPIC { "BasedStation" };
+const int QOS = 1;
+
+const char* PAYLOADS = {"charging"};
+
+const auto TIMEOUT = std::chrono::seconds(10);
+
 int clock_pin = 9;
 int data_pin1 = 2;
 int data_pin2 = 3;
@@ -57,7 +74,7 @@ void setup(){
 	delay(1000);
 }
 
-int main() {
+int main(int argc, char* argv[]) {
 	
 	setup();
 	int timer = millis();
@@ -100,12 +117,54 @@ int main() {
 						digitalWrite(motor_pin_2, LOW);
 						std::cout << "Opladen + schrijven" << std::endl;
 						delay(1000);
-						system("/home/pi/BaseStationBashSkrippie/uploadArduino");
+						/*
+						try {
+							int system_result = system("/home/pi/BaseStationBashSkrippie/uploadArduino");
+							if(system_result == -1){
+								throw std::runtime_error("system call failed");
+							}
+						}
+						catch(const std::exception& error){
+							//set error for not uploading. 
+							std::cout<< "Error:  " << error.what() << std::endl;
+						}*/
 						delay(5000);
 						state = 3;
 					}
 				break;}
 				case 3:{
+					
+					std::string address = (argc > 1) ? std::string(argv[1]) : DFLT_SERVER_ADDRESS;
+					std::cout << "Initializing for server '" << address << "'..." << std::endl;
+					mqtt::async_client cli(address, "");
+
+					std::cout << "  ...OK" << std::endl;
+
+					try {
+						std::cout << "\nConnecting..." << std::endl;
+						cli.connect()->wait();
+						std::cout << "  ...OK" << std::endl;
+
+						std::cout << "\nPublishing messages..." << std::endl;
+
+						mqtt::topic top(cli, TOPIC, QOS);
+						mqtt::token_ptr tok;
+	
+		
+						tok = top.publish(PAYLOADS);
+		
+						tok->wait();	// Just wait for the last one to complete.
+						std::cout << "OK" << std::endl;
+
+						// Disconnect
+						std::cout << "\nDisconnecting..." << std::endl;
+						cli.disconnect()->wait();
+						std::cout << "  ...OK" << std::endl;
+					}
+					catch (const mqtt::exception& exc) {
+						std::cerr << exc << std::endl;
+					}
+
 					std::cout<<"charging\n";
 					if(serialDataAvail(4)){
 						std::cout << "Data available\n";
