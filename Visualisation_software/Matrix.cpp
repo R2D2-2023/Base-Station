@@ -85,7 +85,7 @@ void Matrix::writeMatrixToFile(const std::string& filename){
         std::ofstream file;
         file.open(filename);
         for (int i = 0; i < matrix_vec.size(); ++i) {
-            for (int j = 0; j<matrix_vec[i].size(); ++j) {
+            for (int j = matrix_vec[i].size()-1; j>=0; --j) { // Flipped this because code on led matrix reads different.
                 file << matrix_vec[i][j].getColor()[0] << "," << matrix_vec[i][j].getColor()[1] << "," << matrix_vec[i][j].getColor()[2] << "\n";
             }
         }

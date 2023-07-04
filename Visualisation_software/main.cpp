@@ -2,8 +2,8 @@
 #include "Matrix.h"
 #include "ColorWheel.h"
 #include "Painting.h"
-#include "curl-8.1.2/curl.h"
-#include "jsoncpp-1.9.5/json.h"
+#include "curl.h"
+#include "json.h"
 
 void resizeImage(const sf::Image& originalImage, sf::Image& resizedImage)
 {
@@ -23,6 +23,8 @@ void resizeImage(const sf::Image& originalImage, sf::Image& resizedImage)
 int main() {
     sf::RenderWindow window(sf::VideoMode{480, 370}, "LED Visualisation",  sf::Style::Close);
 
+    Dropbox dropbox;
+    
     Matrix matrix1(window, sf::Vector2f(0,0));
     Matrix matrix2(window, sf::Vector2f(16,0));
     Matrix matrix3(window, sf::Vector2f(32,0));
@@ -47,7 +49,7 @@ int main() {
         resizeImage(image, resized_image);
     }
 
-    std::cout << "To save file locally and upload to dropbox, close the drawing window.\n To close without saving, close the console.\n";
+    std::cout << "To save file locally and upload to dropbox, close the drawing window.\nTo close without saving, close the console.\n";
 
     bool set_as_background = 0;
     bool draw_background = 1;
@@ -104,9 +106,9 @@ int main() {
         sf::Event event;
         while (window.pollEvent(event)) {
              if (event.type == sf::Event::Closed) {
-                std::string paneel1_txt = "paneel1.txt";
+                std::string paneel1_txt = "paneel3.txt"; // Flipped this because code on led matrix reads different.
                 std::string paneel2_txt = "paneel2.txt";
-                std::string paneel3_txt = "paneel3.txt";
+                std::string paneel3_txt = "paneel1.txt"; // Flipped this because code on led matrix reads different.
                 matrix1.writeMatrixToFile(paneel1_txt);
                 matrix2.writeMatrixToFile(paneel2_txt);
                 matrix3.writeMatrixToFile(paneel3_txt);

@@ -15,7 +15,7 @@ private:
     sf::RenderWindow &w;
     void changeColor(sf::Color new_color);
     void makeColors(sf::Color color, sf::Vector2f position);
-    int alpha = 10;
+    int alpha = 255;
 
 public:
     ColorWheel(sf::RenderWindow &w);
