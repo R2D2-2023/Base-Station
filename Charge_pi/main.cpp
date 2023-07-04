@@ -37,6 +37,7 @@ int hall_sensor_2 = 5;
 
 int motor_pin_1 = 21;
 int motor_pin_2 = 22;
+int relais_pin = 23;
 
 
 HX711 scale_1(clock_pin, data_pin1);
@@ -62,9 +63,12 @@ void setup(){
 	pinMode(hall_sensor_2, INPUT);
 	pinMode(motor_pin_1, OUTPUT);
 	pinMode(motor_pin_2, OUTPUT);
+	pinMode(relais_pin, OUTPUT);
 	
 	digitalWrite(motor_pin_1, HIGH);
 	digitalWrite(motor_pin_2, HIGH);
+	digitalWrite(relais_pin, LOW);
+	pinMode(relais_pin, INPUT);
 
 
 	std::cout << "Starting in 3" << std::endl;
@@ -120,7 +124,6 @@ int main(int argc, char* argv[]) {
 						delay(1000);
 						system("/home/pi/BaseStationBashSkrippie/uploadArduino");
 						
-						}*/
 						delay(5000);
 						state = 3;
 					}
@@ -157,6 +160,8 @@ int main(int argc, char* argv[]) {
 					catch (const mqtt::exception& exc) {
 						std::cerr << exc << std::endl;
 					}
+					pinMode(relais_pin, OUTPUT);
+					digitalWrite(relais_pin, HIGH);
 
 					std::cout<<"charging\n";
 					if(serialDataAvail(4)){
@@ -196,6 +201,8 @@ int main(int argc, char* argv[]) {
 						std::cout << "stop charging received\n";
 						digitalWrite(motor_pin_1, LOW);
 						digitalWrite(motor_pin_2, HIGH);
+						digitalWrite(relais_pin, LOW);
+						pinMode(relais_pin, INPUT);
 						state = 4;
 					}
 
