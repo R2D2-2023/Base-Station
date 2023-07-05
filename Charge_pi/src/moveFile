@@ -1,44 +1,84 @@
 #!/bin/bash
 
 dir=./BaseStationBashSkrippie
-date_time=`date +"%d-%b-%Y_%H-%M-%S"`
+dateTime=`date +"%d-%b-%Y_%H-%M-%S"`
 githubFolderName=codeGithub
 
-#cd $dir
-mkdir -p ./Backup_${date_time}
+timestamp_file="timestamp.txt"
+last_timestamp=$(cat "$timestamp_file")
 
-echo
-for filename in *; do
-	if [[ -d "$filename" ]]
-	then
-		echo "Skipping ${filename} as it is a dir"
-	else
-		if [[ $filename == "moveFile" ]] || [[ $filename == "uploadArduino" ]]
+updated_at=$(curl -s "https://api.github.com/repos/R2D2-2023/Mobiel-Platform" | grep -oP '(?<="updated_at": ")[^"]+')
+updated_at=$(date -d "${updated_at%Z}" +"%Y-%m-%d %H:%M:%S")
+
+
+echo "last updated: " $updated_at
+
+if [[ "$updated_at" > "$last_timestamp" ]]; then
+  echo "Repository has been updated since last check. Cloning..."
+	  #cd $dir
+	mkdir -p ./Backup_${dateTime}
+
+	echo
+	for filename in "flashData"/*; do
+		if [[ -d "$filename" ]]
 		then
-			continue
+			echo "Skipping ${filename} as it is a dir"
 		else
-			mv "$filename" "Backup_${dateTime}"
-			echo $filename "-> Backup_"${dateTime}
+			if [[ $filename == "moveFile.sh" ]] || [[ $filename == "timestamp.txt" ]]
+			then
+				continue
+			else
+				mv "$filename" "Backup_${dateTime}"
+				echo $filename "-> Backup_"${dateTime}
+			fi
 		fi
-	fi
-done
+	done
 
-echo
-git clone https://github.com/R2D2-2023/Base-Station ${githubFolderName}
-echo
+	echo
+	git clone https://github.com/R2D2-2023/Mobiel-Platform ${githubFolderName}
+	echo
+	
+	[ ! -d "flashData" ] && mkdir flashData
 
-for filename in $githubFolderName/*; do
-	if [[ -d "$filename" ]]
-	then
-		echo "Skipping ${filename} as it is a dir"
-	else
-		if [[ $filename == "moveFile" ]] || [[ $filename == "uploadArduino" ]]
+	for filename in "$githubFolderName/src"/*; do
+		if [[ -d "$filename" ]]
 		then
-			continue
+			echo "Skipping ${filename} as it is a dir"
 		else
-			mv "$filename" "."
+			if [[ $filename == "moveFile.sh" ]]
+			then
+				continue
+			else
+				mv "$filename" "./flashData/"
+			fi
 		fi
-	fi
-done
+	done
 
-rm -rf $githubFolderName
+	for filename in "$githubFolderName/include"/*; do
+		if [[ -d "$filename" ]]
+		then
+			echo "Skipping ${filename} as it is a dir"
+		else
+			if [[ $filename == "moveFile.sh" ]]
+			then
+				continue
+			else
+				mv "$filename" "./flashData/"
+			fi
+		fi
+	done
+
+
+	echo "Deleting folder."
+	rm -rf $githubFolderName
+	rm -rf README
+	rm -rf *.code-workspace
+	sleep 1
+	
+	# Update the timestamp file
+  echo "$updated_at" > "$timestamp_file"
+  
+else
+  echo "Repository has not been updated since last check."
+  sleep 1
+fi
