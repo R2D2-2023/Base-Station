@@ -21,6 +21,7 @@ const std::string TOPIC { "BasedStation" };
 const int QOS = 1;
 
 const char* PAYLOADS = {"charging"};
+const char* PAYLOADS2 = {"done"};
 
 const auto TIMEOUT = std::chrono::seconds(10);
 
@@ -36,6 +37,7 @@ int hall_sensor_2 = 5;
 
 int motor_pin_1 = 21;
 int motor_pin_2 = 22;
+int relais_pin = 23;
 
 
 HX711 scale_1(clock_pin, data_pin1);
@@ -61,9 +63,12 @@ void setup(){
 	pinMode(hall_sensor_2, INPUT);
 	pinMode(motor_pin_1, OUTPUT);
 	pinMode(motor_pin_2, OUTPUT);
+	pinMode(relais_pin, OUTPUT);
 	
 	digitalWrite(motor_pin_1, HIGH);
 	digitalWrite(motor_pin_2, HIGH);
+	digitalWrite(relais_pin, LOW);
+	pinMode(relais_pin, INPUT);
 
 
 	std::cout << "Starting in 3" << std::endl;
@@ -155,6 +160,8 @@ int main(int argc, char* argv[]) {
 					catch (const mqtt::exception& exc) {
 						std::cerr << exc << std::endl;
 					}
+					pinMode(relais_pin, OUTPUT);
+					digitalWrite(relais_pin, HIGH);
 
 					std::cout<<"charging\n";
 					if(serialDataAvail(4)){
@@ -167,9 +174,35 @@ int main(int argc, char* argv[]) {
 								
 					if(serial_text[0] == 'h' &&serial_text[1] == 'e' && serial_text[2] == 'y'){
 						//charging done, arm starts going up. 
+						try {
+							std::cout << "\nConnecting..." << std::endl;
+							cli.connect()->wait();
+							std::cout << "  ...OK" << std::endl;
+
+							std::cout << "\nPublishing messages..." << std::endl;	
+
+							mqtt::topic top(cli, TOPIC, QOS);
+							mqtt::token_ptr tok;
+	
+							tok = top.publish(PAYLOADS2);
+		
+							tok->wait();	// Just wait for the last one to complete.
+							std::cout << "OK" << std::endl;
+
+							// Disconnect
+							std::cout << "\nDisconnecting..." << std::endl;
+							cli.disconnect()->wait();
+							std::cout << "  ...OK" << std::endl;
+						}
+						catch (const mqtt::exception& exc) {
+							std::cerr << exc << std::endl;
+						}
+						
 						std::cout << "stop charging received\n";
 						digitalWrite(motor_pin_1, LOW);
 						digitalWrite(motor_pin_2, HIGH);
+						digitalWrite(relais_pin, LOW);
+						pinMode(relais_pin, INPUT);
 						state = 4;
 					}
 
