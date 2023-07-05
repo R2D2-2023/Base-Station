@@ -1,0 +1,3 @@
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/CMakeFiles/LEDMatrix_R2D2.dir
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/CMakeFiles/edit_cache.dir
+C:/Users/jasie/CLionProjects/LEDMatrix_R2D2/cmake-build-debug-mingw/CMakeFiles/rebuild_cache.dir

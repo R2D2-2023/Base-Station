@@ -1,0 +1,53 @@
+#!/bin/bash
+
+timestamp_file="timestamp.txt"
+last_timestamp=$(cat "$timestamp_file")
+
+updated_at=$(curl -s "https://api.github.com/repos/R2D2-2023/Mobiel-Platform" | grep -oP '(?<="updated_at": ")[^"]+')
+updated_at=$(date -d "${updated_at%Z}" +"%Y-%m-%d %H:%M:%S")
+
+
+if [[ "$updated_at" > "$last_timestamp" ]]; then
+	echo "Cool skrippie om je arduino te flashen"
+echo "------------------------------------"
+arduino-cli board list
+echo "------------------------------------"
+echo "Kies welke usb je wilt"
+echo "Type 1 voor '/dev/ttyUSB0', type 2 voor '/dev/ttyAMC0', negeer '/dev/AMA0'"
+read -n1 -p "Keuze: " keuze
+case $keuze in
+	1) portNr=/dev/ttyUSB0 ;;
+	2) portNr=/dev/ttyAMC0 ;;
+	3) portNr=/dev/ttyACM0 ;;
+	4) portNr=/dev/ttyUSB1 ;;
+	5) portNr=/dev/ttyAMC1 ;;
+	6) portNr=/dev/ttyACM1 ;;
+	*) echo "Verkeerde keuze : $keuze" 
+		exit 1;;
+esac
+echo
+echo "je port is : $portNr"
+echo "------------------------------------"
+echo "Kies welk board je wilt"
+echo "Type 1 voor een Uno, 2 voor een Mega"
+read -n1 -p "Keuze: " keuze
+case $keuze in
+	1) fqbn=arduino:avr:uno ;;
+	2) fqbn=arduino:avr:mega ;;
+	*) echo "Verkeerde keuze : $keuze" 
+		exit 1;;
+esac
+echo
+echo "------------------------------------"
+arduino-cli compile --fqbn $fqbn ./flashData
+echo "------------------------------------"
+echo "compiled"
+echo "------------------------------------"
+arduino-cli upload -p $portNr --fqbn $fqbn ./flashData
+echo "------------------------------------"
+echo "Upload completed"
+else
+	sleep 1
+  echo "Repository has not been updated since last check. Not flashing."
+fi
+

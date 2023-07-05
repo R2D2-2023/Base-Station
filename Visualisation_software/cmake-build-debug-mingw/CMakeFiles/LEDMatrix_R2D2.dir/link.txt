@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\LEDMatrix_R2D2.dir/objects.a
+C:\TIBestanden\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32\bin\ar.exe cr CMakeFiles\LEDMatrix_R2D2.dir/objects.a @CMakeFiles\LEDMatrix_R2D2.dir\objects1.rsp
+C:\TIBestanden\i686-7.3.0-release-posix-dwarf-rt_v5-rev0\mingw32\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\LEDMatrix_R2D2.dir/objects.a -Wl,--no-whole-archive -o LEDMatrix_R2D2.exe -Wl,--out-implib,libLEDMatrix_R2D2.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\LEDMatrix_R2D2.dir\linklibs.rsp
